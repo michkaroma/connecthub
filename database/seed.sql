@@ -1,14 +1,14 @@
 -- ConnectHub - Seed Data
 USE connecthub;
 
--- Users (passwords = "Password123!" hashed with bcrypt)
+-- Users (passwords = "Password123!" hashed with bcrypt cost=12)
 INSERT INTO users (username, email, password, display_name, bio, role) VALUES
-('admin',     'admin@connecthub.io',   '$2y$12$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Admin ConnectHub', 'Administrateur de la plateforme', 'admin'),
-('moderator1','mod@connecthub.io',     '$2y$12$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Marie Mod', 'Modératrice passionnée', 'moderator'),
-('alice',     'alice@example.com',     '$2y$12$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Alice Martin', 'Développeuse web & UI lover 🎨', 'user'),
-('bob',       'bob@example.com',       '$2y$12$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Bob Dupont', 'Passionné de tech et de café ☕', 'user'),
-('charlie',   'charlie@example.com',   '$2y$12$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Charlie Leclerc', 'Étudiant ECE Paris 🎓', 'user'),
-('diana',     'diana@example.com',     '$2y$12$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Diana Prince', 'Designer & creative coder', 'user');
+('admin',     'admin@connecthub.io',   '$2y$12$XzORGRI1FlZUxaZpL0qWiOiqffmyEMTif0QWHRmDJjpYSQ/hvfuLS', 'Admin ConnectHub', 'Administrateur de la plateforme', 'admin'),
+('moderator1','mod@connecthub.io',     '$2y$12$XzORGRI1FlZUxaZpL0qWiOiqffmyEMTif0QWHRmDJjpYSQ/hvfuLS', 'Marie Mod', 'Modératrice passionnée', 'moderator'),
+('alice',     'alice@example.com',     '$2y$12$XzORGRI1FlZUxaZpL0qWiOiqffmyEMTif0QWHRmDJjpYSQ/hvfuLS', 'Alice Martin', 'Développeuse web & UI lover 🎨', 'user'),
+('bob',       'bob@example.com',       '$2y$12$XzORGRI1FlZUxaZpL0qWiOiqffmyEMTif0QWHRmDJjpYSQ/hvfuLS', 'Bob Dupont', 'Passionné de tech et de café ☕', 'user'),
+('charlie',   'charlie@example.com',   '$2y$12$XzORGRI1FlZUxaZpL0qWiOiqffmyEMTif0QWHRmDJjpYSQ/hvfuLS', 'Charlie Leclerc', 'Étudiant ECE Paris 🎓', 'user'),
+('diana',     'diana@example.com',     '$2y$12$XzORGRI1FlZUxaZpL0qWiOiqffmyEMTif0QWHRmDJjpYSQ/hvfuLS', 'Diana Prince', 'Designer & creative coder', 'user');
 
 -- Follows
 INSERT INTO follows (follower_id, following_id) VALUES
