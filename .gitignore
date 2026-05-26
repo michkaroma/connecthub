@@ -1,0 +1,25 @@
+# Éditeurs de code
+.vscode/
+.idea/
+*.suo
+*.user
+
+# Systèmes d'exploitation
+.DS_Store        # macOS
+Thumbs.db        # Windows
+desktop.ini
+
+# Dépendances
+node_modules/
+
+# Fichiers de build/output
+dist/
+build/
+
+# Variables d'environnement
+.env
+.env.local
+
+# Logs
+*.log
+npm-debug.log*
