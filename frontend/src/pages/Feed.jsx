@@ -14,6 +14,7 @@ export default function Feed() {
   const [posting, setPosting] = useState(false);
   const [mediaUrl, setMediaUrl] = useState('');
   const [showMedia, setShowMedia] = useState(false);
+  const [postError, setPostError] = useState('');
 
   const loadPosts = useCallback(async (f = filter, p = 1) => {
     setLoading(true);
@@ -30,6 +31,7 @@ export default function Feed() {
     e.preventDefault();
     if (!content.trim()) return;
     setPosting(true);
+    setPostError('');
     try {
       await api.createPost({
         content,
@@ -40,7 +42,7 @@ export default function Feed() {
       setShowMedia(false);
       loadPosts(filter, 1);
     } catch(err) {
-      alert(err?.error || 'Erreur lors de la publication');
+      setPostError(err?.error || 'Erreur lors de la publication');
     }
     setPosting(false);
   };
@@ -67,6 +69,9 @@ export default function Feed() {
                 value={mediaUrl}
                 onChange={e => setMediaUrl(e.target.value)}
               />
+            )}
+            {postError && (
+              <div style={{ color: 'var(--danger)', fontSize: '0.85rem', marginTop: 6 }}>{postError}</div>
             )}
             <div className="composer-actions">
               <div className="composer-tools">

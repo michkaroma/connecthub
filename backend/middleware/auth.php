@@ -41,6 +41,7 @@ function requireAuth(): array {
     $authHeader = $_SERVER['HTTP_AUTHORIZATION']
         ?? $_SERVER['REDIRECT_HTTP_AUTHORIZATION']
         ?? (function_exists('getallheaders') ? (getallheaders()['Authorization'] ?? '') : '');
+
     if (!preg_match('/^Bearer\s+(.+)$/', $authHeader, $m)) {
         http_response_code(401);
         die(json_encode(['error' => 'Authentication required']));

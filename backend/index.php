@@ -13,8 +13,9 @@ header('Content-Type: application/json; charset=utf-8');
 // Parse request
 $method = $_SERVER['REQUEST_METHOD'];
 $uri    = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$base   = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
-$uri    = preg_replace('#^' . preg_quote($base, '#') . '#', '', $uri);
+$base = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
+$uri  = preg_replace('#^' . preg_quote($base, '#') . '#', '', $uri);
+$uri  = preg_replace('#^/api(?=/|$)#', '', $uri);
 $parts  = explode('/', trim($uri, '/'));
 $resource = $parts[0] ?? '';
 $id       = $parts[1] ?? null;
