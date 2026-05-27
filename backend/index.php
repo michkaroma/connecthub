@@ -61,6 +61,9 @@ try {
         case 'search':
             require __DIR__ . '/api/search.php';
             break;
+	case 'webhook':
+	    require __DIR__ . '/api/webhook.php'
+	    break;
         default:
             http_response_code(404);
             echo json_encode(['error' => 'Route not found']);
