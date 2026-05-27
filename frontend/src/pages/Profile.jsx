@@ -88,7 +88,7 @@ export default function Profile() {
               <>
                 <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1.4rem' }}>
                   {profile.display_name}
-                  {profile.is_verified && <span title="Vérifié" style={{ marginLeft: 6, color: 'var(--accent)' }}>✓</span>}
+                  {!!profile.is_verified && <span title="Vérifié" style={{ marginLeft: 6, color: 'var(--accent)' }}>✓</span>}
                 </h2>
                 <div style={{ color: 'var(--text-muted)', fontSize: '0.88rem', marginBottom: 8 }}>@{profile.username}</div>
                 {profile.bio && <p style={{ fontSize: '0.93rem', maxWidth: 480 }}>{profile.bio}</p>}
