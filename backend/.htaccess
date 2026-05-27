@@ -3,7 +3,6 @@ RewriteEngine On
 # Pass Authorization header to PHP (required for JWT auth in XAMPP)
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
-
 # Allow actual files/dirs to pass through
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
