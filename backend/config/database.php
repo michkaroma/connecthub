@@ -2,7 +2,7 @@
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'connecthub');
 define('DB_USER', 'connecthub');
-define('DB_PASS', 'tO01142021dO&_');
+define('DB_PASS', 'Mica111!');
 define('DB_CHARSET', 'utf8mb4');
 
 function getDB(): PDO {
