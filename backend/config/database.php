@@ -1,11 +1,8 @@
 <?php
-// ConnectHub - Database Configuration
-// Modifier ces valeurs selon votre environnement
-
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'connecthub');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_USER', 'connecthub');
+define('DB_PASS', 'tO01142021dO&_');
 define('DB_CHARSET', 'utf8mb4');
 
 function getDB(): PDO {
