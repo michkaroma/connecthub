@@ -25,8 +25,21 @@ function verifyToken(string $token): ?array {
     return $data;
 }
 
+function getAuthorizationHeader(): string {
+    if (!empty($_SERVER['HTTP_AUTHORIZATION']))
+        return $_SERVER['HTTP_AUTHORIZATION'];
+    if (!empty($_SERVER['REDIRECT_HTTP_AUTHORIZATION']))
+        return $_SERVER['REDIRECT_HTTP_AUTHORIZATION'];
+    if (function_exists('apache_request_headers')) {
+        $headers = apache_request_headers();
+        if (!empty($headers['Authorization']))
+            return $headers['Authorization'];
+    }
+    return '';
+}
+
 function requireAuth(): array {
-    $authHeader = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
+    $authHeader = getAuthorizationHeader();
     if (!preg_match('/^Bearer\s+(.+)$/', $authHeader, $m)) {
         http_response_code(401);
         die(json_encode(['error' => 'Authentication required']));

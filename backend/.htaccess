@@ -1,5 +1,9 @@
 RewriteEngine On
 
+# Pass Authorization header to PHP (stripped by Apache in CGI/FastCGI mode)
+RewriteCond %{HTTP:Authorization} ^(.*)
+RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
+
 # Allow actual files/dirs to pass through
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
