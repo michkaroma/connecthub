@@ -6,10 +6,8 @@ require_once __DIR__ . '/config/database.php';
 require_once __DIR__ . '/middleware/auth.php';
 require_once __DIR__ . '/middleware/cors.php';
 
+handleCors();
 // CORS + JSON headers
-handleCors(); file_put_contents("/var/log/connecthub/debug.log", date("H:i:s") . " " . ($_SERVER["REQUEST_URI"] ?? "no_uri") . "
-", FILE_APPEND); file_put_contents('/tmp/index_reached', date('H:i:s') . ' ' . $_SERVER['REQUEST_URI'] . "
-", FILE_APPEND);
 header('Content-Type: application/json; charset=utf-8');
 
 // Parse request
@@ -63,7 +61,7 @@ try {
         case 'search':
             require __DIR__ . '/api/search.php';
             break;
-	file_put_contents('/tmp/index_test', 'switch atteint'); case 'webhook':
+	case 'webhook':
 	    require __DIR__ . '/api/webhook.php';
 	    break;
         default:
