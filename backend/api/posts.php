@@ -14,11 +14,7 @@ switch ($method) {
     case 'GET':
         if (!$id) {
             // Optional auth for personalized feed
-            $auth   = null;
-            $header = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
-            if (preg_match('/^Bearer\s+(.+)$/', $header, $m)) {
-                $auth = verifyToken($m[1]);
-            }
+            $auth = getOptionalAuth();
 
             $page  = max(1, (int)($_GET['page']  ?? 1));
             $limit = min(50, max(1, (int)($_GET['limit'] ?? 20)));
@@ -62,19 +58,42 @@ switch ($method) {
             $stmt->execute($params);
             $posts = $stmt->fetchAll();
 
-            // Add user reaction if authenticated
+            // Add user reaction and following status if authenticated
             if ($auth) {
                 $postIds = array_column($posts, 'id');
                 if ($postIds) {
                     $placeholders = implode(',', array_fill(0, count($postIds), '?'));
+
+                    // User reactions
                     $rStmt = $db->prepare("SELECT target_id, emoji FROM reactions WHERE user_id=? AND target_type='post' AND target_id IN ($placeholders)");
                     $rStmt->execute(array_merge([$auth['sub']], $postIds));
                     $userReactions = [];
                     foreach ($rStmt->fetchAll() as $r) {
                         $userReactions[$r['target_id']] = $r['emoji'];
                     }
+
+                    // Following status for each post author
+                    $authorIds = array_unique(array_column($posts, 'author_id'));
+                    $authorPlaceholders = implode(',', array_fill(0, count($authorIds), '?'));
+                    $fStmt = $db->prepare("SELECT following_id FROM follows WHERE follower_id=? AND following_id IN ($authorPlaceholders)");
+                    $fStmt->execute(array_merge([$auth['sub']], $authorIds));
+                    $followingIds = [];
+                    foreach ($fStmt->fetchAll() as $f) {
+                        $followingIds[$f['following_id']] = true;
+                    }
+
+                    // Shared posts by current user
+                    $sStmt = $db->prepare("SELECT post_id FROM shares WHERE user_id=? AND post_id IN ($placeholders)");
+                    $sStmt->execute(array_merge([$auth['sub']], $postIds));
+                    $sharedPostIds = [];
+                    foreach ($sStmt->fetchAll() as $s) {
+                        $sharedPostIds[$s['post_id']] = true;
+                    }
+
                     foreach ($posts as &$post) {
-                        $post['user_reaction'] = $userReactions[$post['id']] ?? null;
+                        $post['user_reaction']      = $userReactions[$post['id']] ?? null;
+                        $post['is_following_author'] = isset($followingIds[$post['author_id']]);
+                        $post['user_shared']         = isset($sharedPostIds[$post['id']]);
                     }
                 }
             }
@@ -91,6 +110,23 @@ switch ($method) {
                 ORDER BY c.created_at ASC");
             $stmt->execute([(int)$id]);
             $comments = $stmt->fetchAll();
+
+            // Add user_reaction per comment if authenticated
+            $auth = getOptionalAuth();
+            if ($auth && $comments) {
+                $commentIds = array_column($comments, 'id');
+                $placeholders = implode(',', array_fill(0, count($commentIds), '?'));
+                $rStmt = $db->prepare("SELECT target_id, emoji FROM reactions WHERE user_id=? AND target_type='comment' AND target_id IN ($placeholders)");
+                $rStmt->execute(array_merge([$auth['sub']], $commentIds));
+                $userReactions = [];
+                foreach ($rStmt->fetchAll() as $r) {
+                    $userReactions[$r['target_id']] = $r['emoji'];
+                }
+                foreach ($comments as &$c) {
+                    $c['user_reaction'] = $userReactions[$c['id']] ?? null;
+                }
+            }
+
             echo json_encode(['comments' => $comments]);
             break;
         }
@@ -113,7 +149,7 @@ switch ($method) {
             $postId = (int)$id;
 
             // Check post exists
-            $stmt = $db->prepare('SELECT id, share_count FROM posts WHERE id=? AND is_deleted=0');
+            $stmt = $db->prepare('SELECT id, author_id, share_count FROM posts WHERE id=? AND is_deleted=0');
             $stmt->execute([$postId]);
             $post = $stmt->fetch();
             if (!$post) { http_response_code(404); echo json_encode(['error'=>'Post not found']); break; }
@@ -126,7 +162,13 @@ switch ($method) {
             $db->prepare('INSERT INTO shares (user_id, post_id) VALUES (?,?)')->execute([$auth['sub'], $postId]);
             $db->prepare('UPDATE posts SET share_count = share_count + 1 WHERE id=?')->execute([$postId]);
 
-            echo json_encode(['shared' => true]);
+            // Notify post author
+            if ($post['author_id'] != $auth['sub']) {
+                $db->prepare("INSERT INTO notifications (user_id, actor_id, type, entity_type, entity_id, content) VALUES (?,?,'share','post',?,?)"
+                )->execute([$post['author_id'], $auth['sub'], $postId, 'Someone shared your post']);
+            }
+
+            echo json_encode(['shared' => true, 'share_count' => $post['share_count'] + 1]);
             break;
         }
 

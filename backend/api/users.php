@@ -53,14 +53,11 @@ switch ($method) {
         if (!$user) { http_response_code(404); echo json_encode(['error'=>'User not found']); break; }
 
         // Is current user following?
-        $header = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
-        if (preg_match('/^Bearer\s+(.+)$/', $header, $m)) {
-            $auth = verifyToken($m[1]);
-            if ($auth) {
-                $stmt2 = $db->prepare('SELECT 1 FROM follows WHERE follower_id=? AND following_id=?');
-                $stmt2->execute([$auth['sub'], (int)$id]);
-                $user['is_following'] = (bool)$stmt2->fetch();
-            }
+        $auth = getOptionalAuth();
+        if ($auth) {
+            $stmt2 = $db->prepare('SELECT 1 FROM follows WHERE follower_id=? AND following_id=?');
+            $stmt2->execute([$auth['sub'], (int)$id]);
+            $user['is_following'] = (bool)$stmt2->fetch();
         }
         echo json_encode($user);
         break;

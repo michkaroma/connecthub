@@ -25,8 +25,22 @@ function verifyToken(string $token): ?array {
     return $data;
 }
 
+// Also patch the optional-auth pattern used in feed & profile endpoints
+function getOptionalAuth(): ?array {
+    $authHeader = $_SERVER['HTTP_AUTHORIZATION']
+        ?? $_SERVER['REDIRECT_HTTP_AUTHORIZATION']
+        ?? (function_exists('getallheaders') ? (getallheaders()['Authorization'] ?? '') : '');
+    if (preg_match('/^Bearer\s+(.+)$/', $authHeader, $m)) {
+        return verifyToken($m[1]);
+    }
+    return null;
+}
+
 function requireAuth(): array {
-    $authHeader = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
+    // Try multiple sources — Apache strips Authorization in some XAMPP configs
+    $authHeader = $_SERVER['HTTP_AUTHORIZATION']
+        ?? $_SERVER['REDIRECT_HTTP_AUTHORIZATION']
+        ?? (function_exists('getallheaders') ? (getallheaders()['Authorization'] ?? '') : '');
     if (!preg_match('/^Bearer\s+(.+)$/', $authHeader, $m)) {
         http_response_code(401);
         die(json_encode(['error' => 'Authentication required']));
