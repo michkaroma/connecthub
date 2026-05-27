@@ -79,29 +79,6 @@ export default function Layout() {
         <Outlet />
       </main>
 
-      {/* Right panel */}
-      <aside className="app-panel">
-        <TrendingPanel />
-      </aside>
-    </div>
-  );
-}
-
-function TrendingPanel() {
-  const [data, setData] = useState(null);
-  useEffect(() => {
-    api.search('a', 'hashtags').then(d => setData(d)).catch(() => {});
-  }, []);
-
-  return (
-    <div>
-      <div className="section-header"><span className="section-title">Tendances</span></div>
-      {data?.hashtags?.slice(0,8).map(h => (
-        <div key={h.tag} style={{ padding: '10px 0', borderBottom: '1px solid var(--border)' }}>
-          <div className="hashtag" style={{ fontWeight: 600 }}>#{h.tag}</div>
-          <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: 2 }}>{h.post_count} publications</div>
-        </div>
-      ))}
     </div>
   );
 }

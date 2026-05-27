@@ -78,7 +78,7 @@ input, textarea { font-family: inherit; }
 /* ── Layout Shell ──────────────────────────────────────────── */
 .app-shell {
   display: grid;
-  grid-template-columns: var(--sidebar-w) 1fr var(--panel-w);
+  grid-template-columns: var(--sidebar-w) 1fr;
   grid-template-rows: var(--header-h) 1fr;
   min-height: 100vh;
 }
