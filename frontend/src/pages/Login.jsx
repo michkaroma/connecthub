@@ -67,13 +67,6 @@ export default function Login() {
             Pas encore de compte ?{' '}
             <Link to="/register" style={{ color: 'var(--accent-light)', fontWeight: 600 }}>S'inscrire</Link>
           </div>
-
-          <div style={{ marginTop: 24, padding: '14px', background: 'var(--bg-elevated)', borderRadius: 'var(--radius-md)', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-            <strong style={{ color: 'var(--text-secondary)' }}>Comptes de test :</strong><br />
-            admin / Password123! (admin)<br />
-            alice / Password123! (utilisateur)<br />
-            moderator1 / Password123! (modérateur)
-          </div>
         </div>
       </div>
     </div>
