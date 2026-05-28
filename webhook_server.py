@@ -3,9 +3,12 @@ import http.server
 import subprocess
 import hmac
 import hashlib
+import threading
+import os
 
 SECRET = b'TON_SECRET_WEBHOOK'
 PORT = 9000
+LOCK = threading.Lock()
 
 class WebhookHandler(http.server.BaseHTTPRequestHandler):
     def do_POST(self):
@@ -21,9 +24,14 @@ class WebhookHandler(http.server.BaseHTTPRequestHandler):
         self.send_response(200)
         self.end_headers()
         self.wfile.write(b'OK')
-        subprocess.Popen(['/bin/bash', '/var/www/html/connecthub/deploy.sh'],
-                        stdout=open('/tmp/deploy.log','w'),
-                        stderr=subprocess.STDOUT)
+        def deploy():
+            with LOCK:
+                subprocess.run(
+                    ['/bin/bash', '/var/www/html/connecthub/deploy.sh'],
+                    stdout=open('/tmp/deploy.log','w'),
+                    stderr=subprocess.STDOUT
+                )
+        threading.Thread(target=deploy).start()
     def log_message(self, *args):
         pass
 
