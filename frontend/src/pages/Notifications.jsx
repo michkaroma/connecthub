@@ -36,7 +36,14 @@ export default function Notifications() {
       ) : (
         notifications.map(n => (
           <div key={n.id}
-            onClick={() => !n.is_read && markRead(n.id)}
+            onClick={() => {
+              if (!n.is_read) {
+                markRead(n.id);
+              }
+              if (n.type === 'message'){
+                navigate(`/messages/${n.entity_id}`);
+              }
+            }}
             style={{
               display: 'flex', gap: 12, padding: '14px 16px',
               background: n.is_read ? 'var(--bg-surface)' : 'var(--accent-dim)',

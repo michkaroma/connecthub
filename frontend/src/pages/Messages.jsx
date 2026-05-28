@@ -102,7 +102,7 @@ export default function Messages() {
           <div style={{ padding: 12, borderBottom: '1px solid var(--border)', background: 'var(--bg-elevated)' }}>
             <input className="form-input" placeholder="Nom d'utilisateur…" value={newConvUser}
               onChange={e => setNewConvUser(e.target.value)} style={{ marginBottom: 8 }}
-              onKeyDown={e => e.key === 'Enter' && startDM()} />
+              onKeyDown={e => { if (e.key === 'Enter') { startDM(); } }} />
             <button className="btn btn-primary btn-sm" onClick={startDM}>Nouvelle conversation</button>
           </div>
         )}
