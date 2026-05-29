@@ -129,7 +129,7 @@ export default function Messages() {
 
         {showNewConv && (
           (newConvIs==0 && (
-            <div style={{ padding: 12, borderBottom: '1px solid var(--border)', background: 'var(--bg-elevated)', display: 'flex'}}>
+            <div style={{ padding: 12, borderBottom: '1px solid var(--border)', background: 'var(--bg-elevated)'}}>
               <button className="btn btn-primary btn-sm" onClick={() => setNewConvIs(1)}>Nouvelle conversation</button>
               <button className="btn btn-primary btn-sm" onClick={() => setNewConvIs(2)}>Nouveau Groupe</button>
             </div>
@@ -143,20 +143,23 @@ export default function Messages() {
           )) || (newConvIs==2 && ( //groupe
             <div style={{ padding: 12, borderBottom: '1px solid var(--border)', background: 'var(--bg-elevated)' }}>
               {Array.from({length: numberInGroup - 1},(_,i) => (
-                  <input 
-                    key={i} 
-                    className="form-input" 
-                    placeholder={`Utilisateur ${i +1}...`} 
-                    value={newGroupUser[i] || ''}
-                    onChange={e => {
-                      const updated = [...newGroupUser];
-                      updated[i] = e.target.value;
-                      setNewGroupUser(updated);
-                    }} 
-                    style={{ marginBottom: 8 }}
-                  />
-                ))}
-              <button className="btn btn-primary btn-sm" onClick={()=>setNumberInGroup(numberInGroup+1)}>+</button>
+                <input 
+                  key={i} 
+                  className="form-input" 
+                  placeholder={`Utilisateur ${i +1}...`} 
+                  value={newGroupUser[i] || ''}
+                  onChange={e => {
+                    const updated = [...newGroupUser];
+                    updated[i] = e.target.value;
+                    setNewGroupUser(updated);
+                  }} 
+                  style={{ marginBottom: 8 }}
+                />
+              ))}
+              <section style={{display: 'flex'}}>
+                <button className="btn btn-primary btn-sm" onClick={()=>setNumberInGroup(numberInGroup+1)}>+</button>
+                <button className="btn btn-primary btn-sm" onClick={()=>setNumberInGroup(numberInGroup-1)}>-</button>
+              </section>
               <button className="btn btn-primary btn-sm" onClick={startGroup}>Nouveau groupe</button>
             </div>
           ))
