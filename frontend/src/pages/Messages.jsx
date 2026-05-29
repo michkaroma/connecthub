@@ -129,7 +129,7 @@ export default function Messages() {
 
         {showNewConv && (
           (newConvIs==0 && (
-            <div style={{ padding: 12, borderBottom: '1px solid var(--border)', background: 'var(--bg-elevated)'}}>
+            <div style={{ padding: 12, borderBottom: '1px solid var(--border)', background: 'var(--bg-elevated)', gap: 8}}>
               <button className="btn btn-primary btn-sm" onClick={() => setNewConvIs(1)}>Nouvelle conversation</button>
               <button className="btn btn-primary btn-sm" onClick={() => setNewConvIs(2)}>Nouveau Groupe</button>
             </div>
@@ -138,7 +138,7 @@ export default function Messages() {
               <input className="form-input" placeholder="Nom d'utilisateur…" value={newConvUser}
                 onChange={e => setNewConvUser(e.target.value)} style={{ marginBottom: 8 }}
                 onKeyDown={e => { if (e.key === 'Enter') { startDM(); } }} />
-              <section style={{display: 'flex', padding: 12}}>
+              <section style={{display: 'flex', gap: 8}}>
                 <button className="btn btn-primary btn-sm" onClick={() => setNewConvIs(0)}>retour</button>
                 <button className="btn btn-primary btn-sm" onClick={startDM}>Nouvelle conversation</button>
               </section>
@@ -159,12 +159,12 @@ export default function Messages() {
                   style={{ marginBottom: 8 }}
                 />
               ))}
-              <section style={{padding: 12}}>
-                <section style={{display: 'flex', padding: 12}}>
-                  {(numberInGroup<8) && (<button className="btn btn-primary btn-sm" onClick={()=>setNumberInGroup(numberInGroup+1)}>+</button>)}
-                  {(numberInGroup>2) && (<button className="btn btn-primary btn-sm" onClick={()=>setNumberInGroup(numberInGroup-1)}>-</button>)}
+              <section>
+                <section style={{display: 'flex', gap: 8}}>
+                  {(numberInGroup<6) && (<button className="btn btn-primary btn-sm" onClick={()=>setNumberInGroup(numberInGroup+1)}>+</button>)}
+                  {(numberInGroup>3) && (<button className="btn btn-primary btn-sm" onClick={()=>setNumberInGroup(numberInGroup-1)}>-</button>)}
                 </section>
-                <section style={{display: 'flex', padding: 12}}>
+                <section style={{display: 'flex', gap: 8, marginTop: 8}}>
                   <button className="btn btn-primary btn-sm" onClick={() => setNewConvIs(0)}>retour</button>
                   <button className="btn btn-primary btn-sm" onClick={startGroup}>Nouveau groupe</button>
                 </section>
