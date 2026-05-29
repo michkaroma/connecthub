@@ -8,13 +8,16 @@ export default function Messages() {
   const { id: convId } = useParams();
   const { user } = useAuth();
   const navigate = useNavigate();
-  const [conversations, setConversations] = useState([]);
-  const [messages,      setMessages]      = useState([]);
-  const [activeConv,    setActiveConv]    = useState(null);
-  const [newMsg,        setNewMsg]        = useState('');
-  const [loading,       setLoading]       = useState(true);
-  const [newConvUser,   setNewConvUser]   = useState('');
-  const [showNewConv,   setShowNewConv]   = useState(false);
+  const [conversations,  setConversations]   = useState([]);
+  const [messages,       setMessages]        = useState([]);
+  const [activeConv,     setActiveConv]      = useState(null);
+  const [newMsg,         setNewMsg]          = useState('');
+  const [loading,        setLoading]         = useState(true);
+  const [newConvUser,    setNewConvUser]     = useState('');
+  const [showNewConv,    setShowNewConv]     = useState(false);
+  const [newConvIs,      setNewConvIs]       = useState(0);       //1->conversation  2->groupe
+  const [numberInGroup,  setNumberInGroup]   = useState(3);
+  const [newGroupUser,   setNewGroupUser]    = useState([])
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -75,7 +78,33 @@ export default function Messages() {
       if (newC) loadMessages(newC);
       setShowNewConv(false);
       setNewConvUser('');
+      setNewConvIs(0);
     } catch(err) { alert(err?.error || 'Erreur'); }
+  };
+
+  const startGroup = async () => {
+    for (let i=0;i<numberInGroup-1;i++){
+      if (!newGroupUser[i]?.trim()) { alert(`Le champ d'utilisateur ${i+1} est vide`); return;}
+    }
+    try{
+      const ids=[];
+      for (let i = 0;i<numberInGroup-1;i++){
+        const results = await api.search(newGroupUser[i], 'users');
+        const found = results.users?.[0];
+        if(!found){alert(`L'utilisateur ${newGroupUser[i]} est introuvable`); return;}
+        ids.push(found.id);
+      }
+
+      const d = await api.createConv({participants: ids, is_group: true});
+      const updatedConvs = await api.conversations();
+      setConversations(updatedConvs.conversations);
+      const newC = updatedConvs.conversations.find(c=> c.id == d.id);
+      if (newC) loadMessages(newC);
+      setShowNewConv(false);
+      setNewGroupUser([]);
+      setNumberInGroup(3);
+      setNewConvIs(0);
+    }catch(err) { alert(err?.error || 'Erreur'); }
   };
 
   const getConvName = (conv) => {
@@ -99,12 +128,38 @@ export default function Messages() {
         </div>
 
         {showNewConv && (
-          <div style={{ padding: 12, borderBottom: '1px solid var(--border)', background: 'var(--bg-elevated)' }}>
-            <input className="form-input" placeholder="Nom d'utilisateur…" value={newConvUser}
-              onChange={e => setNewConvUser(e.target.value)} style={{ marginBottom: 8 }}
-              onKeyDown={e => { if (e.key === 'Enter') { startDM(); } }} />
-            <button className="btn btn-primary btn-sm" onClick={startDM}>Nouvelle conversation</button>
-          </div>
+          (newConvIs==0 && (
+            <div style={{ padding: 12, borderBottom: '1px solid var(--border)', background: 'var(--bg-elevated)', display: 'flex'}}>
+              <button className="btn btn-primary btn-sm" onClick={() => setNewConvIs(1)}>Nouvelle conversation</button>
+              <button className="btn btn-primary btn-sm" onClick={() => setNewConvIs(2)}>Nouveau Groupe</button>
+            </div>
+          )) || (newConvIs==1 && ( //conversation
+            <div style={{ padding: 12, borderBottom: '1px solid var(--border)', background: 'var(--bg-elevated)' }}>
+              <input className="form-input" placeholder="Nom d'utilisateur…" value={newConvUser}
+                onChange={e => setNewConvUser(e.target.value)} style={{ marginBottom: 8 }}
+                onKeyDown={e => { if (e.key === 'Enter') { startDM(); } }} />
+              <button className="btn btn-primary btn-sm" onClick={startDM}>Nouvelle conversation</button>
+            </div>
+          )) || (newConvIs==2 && ( //groupe
+            <div style={{ padding: 12, borderBottom: '1px solid var(--border)', background: 'var(--bg-elevated)' }}>
+              {Array.from({length: numberInGroup - 1},(_,i) => (
+                  <input 
+                    key={i} 
+                    className="form-input" 
+                    placeholder={`Utilisateur ${i +1}...`} 
+                    value={newGroupUser[i] || ''}
+                    onChange={e => {
+                      const updated = [...newGroupUser];
+                      updated[i] = e.target.value;
+                      setNewGroupUser(updated);
+                    }} 
+                    style={{ marginBottom: 8 }}
+                  />
+                ))}
+              <button className="btn btn-primary btn-sm" onClick={()=>setNumberInGroup(numberInGroup+1)}>+</button>
+              <button className="btn btn-primary btn-sm" onClick={startGroup}>Nouveau groupe</button>
+            </div>
+          ))
         )}
 
         <div style={{ flex: 1, overflowY: 'auto' }}>
