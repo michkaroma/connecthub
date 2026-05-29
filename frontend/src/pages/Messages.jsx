@@ -138,7 +138,10 @@ export default function Messages() {
               <input className="form-input" placeholder="Nom d'utilisateur…" value={newConvUser}
                 onChange={e => setNewConvUser(e.target.value)} style={{ marginBottom: 8 }}
                 onKeyDown={e => { if (e.key === 'Enter') { startDM(); } }} />
-              <button className="btn btn-primary btn-sm" onClick={startDM}>Nouvelle conversation</button>
+              <section style={{display: 'flex'}}>
+                <button className="btn btn-primary btn-sm" onClick={() => setNewConvIs(0)}>retour</button>
+                <button className="btn btn-primary btn-sm" onClick={startDM}>Nouvelle conversation</button>
+              </section>
             </div>
           )) || (newConvIs==2 && ( //groupe
             <div style={{ padding: 12, borderBottom: '1px solid var(--border)', background: 'var(--bg-elevated)' }}>
@@ -157,10 +160,13 @@ export default function Messages() {
                 />
               ))}
               <section style={{display: 'flex'}}>
-                <button className="btn btn-primary btn-sm" onClick={()=>setNumberInGroup(numberInGroup+1)}>+</button>
-                <button className="btn btn-primary btn-sm" onClick={()=>setNumberInGroup(numberInGroup-1)}>-</button>
+                ({numberInGroup<8} && (<button className="btn btn-primary btn-sm" onClick={()=>setNumberInGroup(numberInGroup+1)}>+</button>))
+                ({numberInGroup>2} && (<button className="btn btn-primary btn-sm" onClick={()=>setNumberInGroup(numberInGroup-1)}>-</button>))
               </section>
-              <button className="btn btn-primary btn-sm" onClick={startGroup}>Nouveau groupe</button>
+              <section style={{display: 'flex'}}>
+                <button className="btn btn-primary btn-sm" onClick={() => setNewConvIs(0)}>retour</button>
+                <button className="btn btn-primary btn-sm" onClick={startGroup}>Nouveau groupe</button>
+              </section>
             </div>
           ))
         )}
