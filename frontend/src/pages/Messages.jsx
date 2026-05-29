@@ -129,9 +129,9 @@ export default function Messages() {
 
         {showNewConv && (
           (newConvIs==0 && (
-            <div style={{ padding: 12, borderBottom: '1px solid var(--border)', background: 'var(--bg-elevated)', gap: 8}}>
-              <button className="btn btn-primary btn-sm" onClick={() => setNewConvIs(1)}>Nouvelle conversation</button>
-              <button className="btn btn-primary btn-sm" onClick={() => setNewConvIs(2)}>Nouveau Groupe</button>
+            <div style={{ padding: 12, borderBottom: '1px solid var(--border)', background: 'var(--bg-elevated)'}}>
+              <button className="btn btn-primary btn-sm" onClick={() => setNewConvIs(1)} style={{ marginBottom: 8, display: 'block', width: '100%' }}>Nouvelle conversation</button>
+              <button className="btn btn-primary btn-sm" onClick={() => setNewConvIs(2)} style={{ display: 'block', width: '100%' }}>Nouveau Groupe</button>
             </div>
           )) || (newConvIs==1 && ( //conversation
             <div style={{ padding: 12, borderBottom: '1px solid var(--border)', background: 'var(--bg-elevated)' }}>
