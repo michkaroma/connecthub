@@ -26,7 +26,7 @@ export default function Layout() {
       api.notifications()
         .then(d => setUnreadNotifs(d.unread_count || 0))
         .catch(() => {});
-    }, 30000);
+    }, 1000);
     return () => clearInterval(interval);
   }, []);
 
