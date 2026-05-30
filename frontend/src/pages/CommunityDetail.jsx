@@ -67,8 +67,9 @@ export default function CommunityDetail() {
   if (loading) return <div style={{ textAlign: 'center', padding: 60 }}><div className="spinner" style={{ margin: '0 auto' }} /></div>;
   if (!community) return <div style={{ padding: 40, color: 'var(--text-muted)' }}>Communauté introuvable.</div>;
 
-  const myRole = community.user_role;
-  const isAdmin = myRole === 'admin';
+  const myRole        = community.user_role;
+  const isAdmin       = myRole === 'admin';
+  const isPlatformAdmin = user?.role === 'admin';
 
   return (
     <div>
@@ -91,7 +92,7 @@ export default function CommunityDetail() {
                 {myRole ? 'Quitter' : 'Rejoindre'}
               </button>
             )}
-            {(isAdmin) && (
+            {(isAdmin || isPlatformAdmin) && (
               <button className="btn btn-danger btn-sm" onClick={handleDeleteCommunity}>🗑️</button>
             )}
           </div>

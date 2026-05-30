@@ -121,8 +121,17 @@ switch ($method) {
             break;
         }
 
-        $auth = requireRole('admin');
+        $auth = requireAuth();
         if (!$id) { http_response_code(400); echo json_encode(['error'=>'ID required']); break; }
+        // Platform admin OR community admin can delete
+        if ($auth['role'] !== 'admin') {
+            $stmt = $db->prepare('SELECT role FROM community_members WHERE community_id=? AND user_id=?');
+            $stmt->execute([(int)$id, $auth['sub']]);
+            $myRole = $stmt->fetchColumn();
+            if ($myRole !== 'admin') {
+                http_response_code(403); echo json_encode(['error'=>'Forbidden']); break;
+            }
+        }
         $db->prepare('DELETE FROM communities WHERE id=?')->execute([(int)$id]);
         echo json_encode(['deleted' => true]);
         break;
