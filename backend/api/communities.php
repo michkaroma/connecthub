@@ -121,6 +121,21 @@ switch ($method) {
             break;
         }
 
+        if ($id && $action === 'members' && isset($parts[3])) {
+            $auth = requireAuth();
+            $commId    = (int)$id;
+            $targetUid = (int)$parts[3];
+            $stmt = $db->prepare('SELECT role FROM community_members WHERE community_id=? AND user_id=?');
+            $stmt->execute([$commId, $auth['sub']]);
+            $myRole = $stmt->fetchColumn();
+            if ($myRole !== 'admin' && $auth['role'] !== 'admin') {
+                http_response_code(403); echo json_encode(['error'=>'Forbidden']); break;
+            }
+            $db->prepare('DELETE FROM community_members WHERE community_id=? AND user_id=?')->execute([$commId, $targetUid]);
+            echo json_encode(['removed' => true]);
+            break;
+        }
+
         $auth = requireAuth();
         if (!$id) { http_response_code(400); echo json_encode(['error'=>'ID required']); break; }
         // Platform admin OR community admin can delete

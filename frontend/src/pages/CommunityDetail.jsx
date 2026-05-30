@@ -64,6 +64,16 @@ export default function CommunityDetail() {
     window.location.href = '/communities';
   };
 
+  const handleRemoveMembers = async (userId) =>{
+    if (!window.confirm('Supprimer cet utilisateur de la communauté ?')) return;
+    await api.removeMember(id, userId);
+    setCommunity(c => ({
+      ...c,
+      members: c.members.filter(m => m.id !== userId),
+      member_count: c.member_count - 1
+    }));
+  }
+
   if (loading) return <div style={{ textAlign: 'center', padding: 60 }}><div className="spinner" style={{ margin: '0 auto' }} /></div>;
   if (!community) return <div style={{ padding: 40, color: 'var(--text-muted)' }}>Communauté introuvable.</div>;
 
@@ -148,6 +158,9 @@ export default function CommunityDetail() {
                 <div style={{ fontWeight: 600 }}>{m.display_name}</div>
                 <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>@{m.username}</div>
               </div>
+              {isAdmin && m.id != user?.id &&
+                <button className="btn btn-primary btn-sm" onClick={() => handleRemoveMembers(m.id)} >supprimer</button>
+              }
               <span style={{ fontSize: '0.78rem', color: m.role === 'admin' ? 'var(--accent-light)' : 'var(--text-muted)', fontWeight: 600 }}>
                 {m.role}
               </span>

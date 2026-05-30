@@ -56,13 +56,14 @@ const api = {
   following:    (id)       => api.get(`/users/${id}/following`),
 
   // Communities
-  communities:       (params = {}) => api.get(`/communities?${new URLSearchParams(params)}`),
-  getCommunity:      (id)          => api.get(`/communities/${id}`),
-  createCommunity:   (data)        => api.post('/communities', data),
-  joinCommunity:     (id)          => api.post(`/communities/${id}/join`),
-  leaveCommunity:    (id)          => api.delete(`/communities/${id}/join`),
-  updateMemberRole:  (commId, uid, role) => api.put(`/communities/${commId}/members/${uid}`, { role }),
-  deleteCommunity:   (id)          => api.delete(`/communities/${id}`),
+  communities:       (params = {})        => api.get(`/communities?${new URLSearchParams(params)}`),
+  getCommunity:      (id)                 => api.get(`/communities/${id}`),
+  createCommunity:   (data)               => api.post('/communities', data),
+  joinCommunity:     (id)                 => api.post(`/communities/${id}/join`),
+  leaveCommunity:    (id)                 => api.delete(`/communities/${id}/join`),
+  updateMemberRole:  (commId, uid, role)  => api.put(`/communities/${commId}/members/${uid}`, { role }),
+  deleteCommunity:   (id)                 => api.delete(`/communities/${id}`),
+  removeMember:      (id,uid)             => api.delete(`/communities/${id}/members/${uid}`),
 
   // Notifications
   notifications: ()   => api.get('/notifications'),
