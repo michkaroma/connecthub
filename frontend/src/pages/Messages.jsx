@@ -128,7 +128,7 @@ export default function Messages() {
 
   const mark_unread = async (convId) =>{
     try{
-      api.markUnread(convId);
+      await api.markUnread(convId);
       const updatedConvs = await api.conversations();
       setConversations(updatedConvs.conversations);
     }catch(err) { alert(err?.error || 'Erreur'); }
