@@ -19,6 +19,7 @@ export default function Messages() {
   const [numberInGroup,  setNumberInGroup]   = useState(3);
   const [newGroupUser,   setNewGroupUser]    = useState([]);
   const [groupName,      setGroupName]       = useState('');
+  const [openMenuConv,   setOpenMenuConv]    = useState(null);
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -212,6 +213,30 @@ export default function Messages() {
                   <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', marginTop: 2 }}>
                     {conv.last_message || 'Pas encore de message'}
                   </div>
+                </div>
+                <div style={{position: 'relative'}} on click = {e=> e.stopPropagation}>
+                  <button
+                    onClick={()=> setOpenMenuConv === conv.id ? null : conv.id}
+                    style={{
+                      background: 'none', border: 'none', cursor: 'pointer', color:'var (--text-muted)', fontSize: '1.1rem', padding: '2px 6px', borderRadius: 4
+                    }}
+                  >...</button>
+                  {openMenuConv === conv.id &&(
+                    <div style={{
+                      position: 'absolute', right: 0, top: '100%', zIndex: 100,
+                      background: 'var(--bg-elevated)', border: '1px solid var(--border)',
+                      borderRadius: 8, boxShadow: '0 4px 16px rgba(0,0,0,0.15)', minWidth: 180, overflow: 'hidden'
+                    }}>
+                      <button
+                        onClick={()=> {}}
+                        style={{ display: 'block', width: '100%', padding: '10px 16px', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', fontSize: '0.88rem', color: 'var(--text)' }}
+                      >Marquer comme lu</button>
+                      <button
+                        onClick={()=> {}}
+                        style={{ display: 'block', width: '100%', padding: '10px 16px', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', fontSize: '0.88rem', color: 'var(--text)' }}
+                      >Supprimer la conversation</button>
+                    </div>
+                  )}
                 </div>
               </div>
             ))
