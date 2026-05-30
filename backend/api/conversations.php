@@ -4,6 +4,7 @@
 // POST   /api/conversations              - create (DM or group)
 // POST   /api/conversations/:id/messages - send message
 // DELETE /api/conversations/:id/messages/:msgId - delete message
+// PUT    /api/conversations/:id/mark-uread - mark unread
 
 $db = getDB();
 $auth = requireAuth();
@@ -124,7 +125,17 @@ switch ($method) {
         http_response_code(201);
         echo json_encode(['id' => $convId]);
         break;
+    case 'PUT':
+        if ($id && $action === 'mark-unread'){
+            $stmt = $db->prepare('SELECT 1 FROM conversation_participants WHERE conversation_id=? AND user_id=?');
+            $stmt->execute([(int)$id, $auth['sub']]);
 
+            $stmt = $db->prepare('UPDATE conversation_participants SET last_read_at=NULL WHERE conversation_id=? AND user_id=?');
+            $stmt->execute([(int)$id,$auth['sub']]);
+
+            http_response_code(200);
+            break;
+        }
     default:
         http_response_code(405);
         echo json_encode(['error' => 'Method not allowed']);
