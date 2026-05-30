@@ -253,7 +253,7 @@ export default function Messages() {
                       >Marquer comme non-lu</button>
                       <button
                         onClick={()=> {setOpenMenuConv(null);  }}
-                        style={{ display: 'block', width: '100%', padding: '10px 16px', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', fontSize: '0.88rem', color: 'var(--text)' }}
+                        style={{ display: 'block', width: '100%', padding: '10px 16px', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', fontSize: '0.88rem', color: 'red' }}
                       >Supprimer la conversation</button>
                     </div>
                   )}
