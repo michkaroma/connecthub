@@ -117,6 +117,7 @@ export default function Messages() {
 
   const getConvAvatar = (conv) => {
     if (conv.other_user) return conv.other_user;
+    if (conv.name) return { display_name: conv.name };
     return null;
   };
 
