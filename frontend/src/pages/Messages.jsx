@@ -17,7 +17,8 @@ export default function Messages() {
   const [showNewConv,    setShowNewConv]     = useState(false);
   const [newConvIs,      setNewConvIs]       = useState(0);       //1->conversation  2->groupe
   const [numberInGroup,  setNumberInGroup]   = useState(3);
-  const [newGroupUser,   setNewGroupUser]    = useState([])
+  const [newGroupUser,   setNewGroupUser]    = useState([]);
+  const [groupName,      setGroupName]       = useState('');
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -95,7 +96,7 @@ export default function Messages() {
         ids.push(found.id);
       }
 
-      const d = await api.createConv({participants: ids, is_group: true});
+      const d = await api.createConv({participants: ids, is_group: true, name: groupName});
       const updatedConvs = await api.conversations();
       setConversations(updatedConvs.conversations);
       const newC = updatedConvs.conversations.find(c=> c.id == d.id);
@@ -104,6 +105,7 @@ export default function Messages() {
       setNewGroupUser([]);
       setNumberInGroup(3);
       setNewConvIs(0);
+      setGroupName('');
     }catch(err) { alert(err?.error || 'Erreur'); }
   };
 
@@ -145,6 +147,13 @@ export default function Messages() {
             </div>
           )) || (newConvIs==2 && ( //groupe
             <div style={{ padding: 12, borderBottom: '1px solid var(--border)', background: 'var(--bg-elevated)' }}>
+              Nom du groupe :
+              <input 
+                className="form-input" 
+                placeholder="Nom du groupe" 
+                value={groupName || ''}
+                onChange={e=>{setGroupName(e.target.value)}}
+              />
               {Array.from({length: numberInGroup - 1},(_,i) => (
                 <input 
                   key={i} 
