@@ -21,9 +21,9 @@ $resource = $parts[0] ?? '';
 $id       = $parts[1] ?? null;
 $action   = $parts[2] ?? null;
 
-// Load body for POST/PUT/PATCH
+// Load body for POST/PUT/PATCH/DELETE
 $body = [];
-if (in_array($method, ['POST','PUT','PATCH'])) {
+if (in_array($method, ['POST','PUT','PATCH','DELETE'])) {
     $raw  = file_get_contents('php://input');
     $body = json_decode($raw, true) ?? [];
 }
