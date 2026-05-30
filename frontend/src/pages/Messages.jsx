@@ -51,6 +51,8 @@ export default function Messages() {
     try {
       const d = await api.getMessages(conv.id);
       setMessages(d.messages);
+      const updatedConvs = await api.conversations();
+      setConversations(updatedConvs.conversations);
     } catch(e) {}
   };
 
