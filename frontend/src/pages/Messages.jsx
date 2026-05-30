@@ -126,6 +126,14 @@ export default function Messages() {
     return null;
   };
 
+  const mark_read = async (convId) =>{
+    try{
+      await api.markRead(convId);
+      const updatedConvs = await api.conversations();
+      setConversations(updatedConvs.conversations);
+    }catch(err) { alert(err?.error || 'Erreur'); }
+  }
+
   const mark_unread = async (convId) =>{
     try{
       await api.markUnread(convId);
@@ -237,6 +245,9 @@ export default function Messages() {
                       borderRadius: 8, boxShadow: '0 4px 16px rgba(0,0,0,0.15)', minWidth: 180, overflow: 'hidden'
                     }}>
                       <button
+                        onClick={()=> {setOpenMenuConv(null); mark_read(conv.id)}}
+                        style={{ display: 'block', width: '100%', padding: '10px 16px', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', fontSize: '0.88rem', color: 'var(--text)' }}
+                      >Marquer comme lu</button><button
                         onClick={()=> {setOpenMenuConv(null); mark_unread(conv.id)}}
                         style={{ display: 'block', width: '100%', padding: '10px 16px', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', fontSize: '0.88rem', color: 'var(--text)' }}
                       >Marquer comme non-lu</button>

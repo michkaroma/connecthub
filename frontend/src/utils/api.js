@@ -71,11 +71,12 @@ const api = {
   markRead:      (id) => api.put(`/notifications/${id}`, { is_read: 1 }),
 
   // Conversations
-  conversations: ()          => api.get('/conversations'),
-  getMessages:   (id)        => api.get(`/conversations/${id}/messages`),
-  createConv:    (data)      => api.post('/conversations', data),
-  sendMessage:   (id, content) => api.post(`/conversations/${id}/messages`, { content }),
-  markUnread:    (id)     => api.put(`/conversations/${id}/mark-unread`),
+  conversations: ()              => api.get('/conversations'),
+  getMessages:   (id)            => api.get(`/conversations/${id}/messages`),
+  createConv:    (data)          => api.post('/conversations', data),
+  sendMessage:   (id, content)   => api.post(`/conversations/${id}/messages`, { content }),
+  markUnread:    (id)            => api.put(`/conversations/${id}/mark-unread`),
+  markread:      (id)            => api.put(`/conversations/${id}/mark-read`),
 
   // Reports
   report:        (data)       => api.post('/reports', data),

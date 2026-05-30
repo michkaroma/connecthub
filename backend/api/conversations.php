@@ -138,6 +138,18 @@ switch ($method) {
 
             break;
         }
+        if ($id && $action === 'mark-read'){
+            $stmt = $db->prepare('SELECT 1 FROM conversation_participants WHERE conversation_id=? AND user_id=?');
+            $stmt->execute([(int)$id, $auth['sub']]);
+
+            $stmt = $db->prepare('UPDATE conversation_participants SET last_read_at=NOW() WHERE conversation_id=? AND user_id=?');
+            $stmt->execute([(int)$id,$auth['sub']]);
+
+            http_response_code(200);
+            echo json_encode(['success' => true]);
+
+            break;
+        }
     default:
         http_response_code(405);
         echo json_encode(['error' => 'Method not allowed']);
