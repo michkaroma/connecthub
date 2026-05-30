@@ -76,7 +76,7 @@ const api = {
   createConv:    (data)          => api.post('/conversations', data),
   sendMessage:   (id, content)   => api.post(`/conversations/${id}/messages`, { content }),
   markUnread:    (id)            => api.put(`/conversations/${id}/mark-unread`),
-  markread:      (id)            => api.put(`/conversations/${id}/mark-read`),
+  markConvRead:      (id)            => api.put(`/conversations/${id}/mark-read`),
 
   // Reports
   report:        (data)       => api.post('/reports', data),

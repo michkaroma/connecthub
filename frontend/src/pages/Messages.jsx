@@ -128,7 +128,7 @@ export default function Messages() {
 
   const mark_read = async (convId) =>{
     try{
-      await api.markRead(convId);
+      await api.markConvRead(convId);
       const updatedConvs = await api.conversations();
       setConversations(updatedConvs.conversations);
     }catch(err) { alert(err?.error || 'Erreur'); }
