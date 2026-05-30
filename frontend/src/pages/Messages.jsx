@@ -153,7 +153,6 @@ export default function Messages() {
                 placeholder="Nom du groupe" 
                 value={groupName || ''}
                 onChange={e=>{setGroupName(e.target.value)}}
-                style={{ marginBottom: 8 }}
               />
               <hr style={{ borderColor: 'var(--border)', margin: '8px 0' }} />
               {Array.from({length: numberInGroup - 1},(_,i) => (
