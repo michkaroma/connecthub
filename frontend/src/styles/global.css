@@ -414,9 +414,11 @@ input, textarea { font-family: inherit; }
 
 /* ── Message bubble ────────────────────────────────────────── */
 .msg-bubble {
-  max-width: 70%; padding: 10px 14px;
+  width: fit-content; max-width: 100%; padding: 10px 14px;
   border-radius: var(--radius-lg);
   font-size: 0.92rem; line-height: 1.5;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 .msg-bubble.mine {
   background: var(--accent);

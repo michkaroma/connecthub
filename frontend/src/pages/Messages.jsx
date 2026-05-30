@@ -236,7 +236,7 @@ export default function Messages() {
                 {msg.sender_id != user?.id && (
                   <Avatar user={{ username: msg.username, display_name: msg.display_name, avatar_url: msg.avatar_url }} size="xs" />
                 )}
-                <div>
+                <div style={{ maxWidth: '70%' }}>
                   {msg.sender_id != user?.id && (
                     <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginBottom: 2 }}>{msg.display_name}</div>
                   )}
