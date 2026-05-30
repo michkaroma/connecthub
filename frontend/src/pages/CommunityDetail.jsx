@@ -69,7 +69,6 @@ export default function CommunityDetail() {
 
   const myRole = community.user_role;
   const isAdmin = myRole === 'admin';
-  const isMod   = myRole === 'moderator' || isAdmin;
 
   return (
     <div>
@@ -92,7 +91,7 @@ export default function CommunityDetail() {
                 {myRole ? 'Quitter' : 'Rejoindre'}
               </button>
             )}
-            {(isModerator && isMod) && (
+            {(isAdmin) && (
               <button className="btn btn-danger btn-sm" onClick={handleDeleteCommunity}>🗑️</button>
             )}
           </div>
@@ -148,7 +147,7 @@ export default function CommunityDetail() {
                 <div style={{ fontWeight: 600 }}>{m.display_name}</div>
                 <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>@{m.username}</div>
               </div>
-              <span style={{ fontSize: '0.78rem', color: m.role === 'admin' ? 'var(--accent-light)' : m.role === 'moderator' ? 'var(--warning)' : 'var(--text-muted)', fontWeight: 600 }}>
+              <span style={{ fontSize: '0.78rem', color: m.role === 'admin' ? 'var(--accent-light)' : 'var(--text-muted)', fontWeight: 600 }}>
                 {m.role}
               </span>
               {isAdmin && m.id != user?.id && (
@@ -158,7 +157,6 @@ export default function CommunityDetail() {
                   style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border)', color: 'var(--text-primary)', borderRadius: 'var(--radius-sm)', padding: '4px 8px', fontSize: '0.8rem' }}
                 >
                   <option value="member">Membre</option>
-                  <option value="moderator">Modérateur</option>
                   <option value="admin">Admin</option>
                 </select>
               )}

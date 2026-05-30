@@ -97,7 +97,7 @@ switch ($method) {
             $commId    = (int)$id;
             $targetUid = (int)$parts[3];
             $newRole   = $body['role'] ?? '';
-            if (!in_array($newRole, ['member','moderator','admin'])) {
+            if (!in_array($newRole, ['member','admin'])) {
                 http_response_code(422); echo json_encode(['error'=>'Invalid role']); break;
             }
             // Must be community admin or platform admin
