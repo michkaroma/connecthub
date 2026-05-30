@@ -134,6 +134,8 @@ switch ($method) {
             $stmt->execute([(int)$id,$auth['sub']]);
 
             http_response_code(200);
+            echo json_encode(['success' => true]);
+
             break;
         }
     default:
