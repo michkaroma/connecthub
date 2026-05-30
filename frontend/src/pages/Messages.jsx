@@ -260,7 +260,7 @@ export default function Messages() {
                         style={{ display: 'block', width: '100%', padding: '10px 16px', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', fontSize: '0.88rem', color: 'var(--text)' }}
                       >Marquer comme non-lu</button>
                       <button
-                        onClick={()=> {setOpenMenuConv(null);  }}
+                        onClick={()=> {setOpenMenuConv(null); delete_conv(conv.id)}}
                         style={{ display: 'block', width: '100%', padding: '10px 16px', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', fontSize: '0.88rem', color: 'red' }}
                       >Supprimer la conversation</button>
                     </div>
