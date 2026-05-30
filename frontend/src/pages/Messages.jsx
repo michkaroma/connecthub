@@ -126,6 +126,14 @@ export default function Messages() {
     return null;
   };
 
+  const delete_conv = async (convId) =>{
+    try{
+      await api.deleteConv(convId);
+      const updatedConvs = await api.conversations();
+      setConversations(updatedConvs.conversations);
+    }catch(err) { alert(err?.error || 'Erreur'); }
+  }
+
   const mark_read = async (convId) =>{
     try{
       await api.markConvRead(convId);
