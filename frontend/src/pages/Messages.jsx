@@ -239,7 +239,7 @@ export default function Messages() {
                       <button
                         onClick={()=> {setOpenMenuConv(null); mark_unread(conv.id)}}
                         style={{ display: 'block', width: '100%', padding: '10px 16px', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', fontSize: '0.88rem', color: 'var(--text)' }}
-                      >Marquer comme lu</button>
+                      >Marquer comme non-lu</button>
                       <button
                         onClick={()=> {setOpenMenuConv(null);  }}
                         style={{ display: 'block', width: '100%', padding: '10px 16px', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', fontSize: '0.88rem', color: 'var(--text)' }}
