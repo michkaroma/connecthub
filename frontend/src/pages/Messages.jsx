@@ -214,11 +214,11 @@ export default function Messages() {
                     {conv.last_message || 'Pas encore de message'}
                   </div>
                 </div>
-                <div style={{position: 'relative'}} on click = {e=> e.stopPropagation}>
+                <div style={{position: 'relative'}} onClick={e => e.stopPropagation()}>
                   <button
-                    onClick={()=> setOpenMenuConv === conv.id ? null : conv.id}
+                    onClick={() => setOpenMenuConv(openMenuConv === conv.id ? null : conv.id)}
                     style={{
-                      background: 'none', border: 'none', cursor: 'pointer', color:'var (--text-muted)', fontSize: '1.1rem', padding: '2px 6px', borderRadius: 4
+                      background: 'none', border: 'none', cursor: 'pointer', color:'white', fontSize: '1.1rem', padding: '2px 6px', borderRadius: 4
                     }}
                   >...</button>
                   {openMenuConv === conv.id &&(
