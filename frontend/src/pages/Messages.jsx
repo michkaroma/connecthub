@@ -228,11 +228,11 @@ export default function Messages() {
                       borderRadius: 8, boxShadow: '0 4px 16px rgba(0,0,0,0.15)', minWidth: 180, overflow: 'hidden'
                     }}>
                       <button
-                        onClick={()=> {}}
+                        onClick={()=> {setOpenMenuConv(null); /* TODO: marquer comme lu */ }}
                         style={{ display: 'block', width: '100%', padding: '10px 16px', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', fontSize: '0.88rem', color: 'var(--text)' }}
                       >Marquer comme lu</button>
                       <button
-                        onClick={()=> {}}
+                        onClick={()=> {setOpenMenuConv(null); /* TODO: supprimer */ }}
                         style={{ display: 'block', width: '100%', padding: '10px 16px', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', fontSize: '0.88rem', color: 'var(--text)' }}
                       >Supprimer la conversation</button>
                     </div>
