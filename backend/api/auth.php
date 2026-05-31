@@ -63,7 +63,7 @@ switch ("$method:$id") {
         echo json_encode(['token' => $token, 'user' => $user]);
         break;
 
-    // ── Me ────────────────────────────────────────────────────────────────────
+    // info sur l'utilisateur
     case 'GET:me':
         $auth = requireAuth();
         $stmt = $db->prepare('SELECT id,username,email,display_name,bio,avatar_url,cover_url,role,is_verified,created_at FROM users WHERE id=?');
