@@ -53,7 +53,7 @@ function requireAuth(): array {
     }
     return $data; // retourne ['sub' => userId, 'role' => role, 'iat' => ..., 'exp' => ...]
 }
-
+// Middleware pour vérifier que l'utilisateur a un rôle spécifique (ex: admin)
 function requireRole(string ...$roles): array {
     $auth = requireAuth();
     if (!in_array($auth['role'], $roles)) {
