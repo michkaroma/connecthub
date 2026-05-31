@@ -107,7 +107,7 @@ switch ($method) {
  
         if ($id && $action === 'messages') {
  
-            
+            // Vérifier la participation dans le message
             $stmt = $db->prepare(
                 'SELECT 1 FROM conversation_participants WHERE conversation_id = ? AND user_id = ?'
             );
