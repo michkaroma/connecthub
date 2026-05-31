@@ -1,6 +1,5 @@
 <?php
 
-// POST   /api/communities/:id/join     - join
 // DELETE /api/communities/:id/join     - leave
 // PUT    /api/communities/:id/members/:userId  - change role
 
