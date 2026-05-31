@@ -250,7 +250,7 @@ switch ($method) {
             break;
         }
  
-        
+        // Seul l'expéditeur ou un admin de la conversation peut supprimer
         $canDelete = ((int)$msg['sender_id'] === $userId);
         if (!$canDelete) {
             $roleStmt = $db->prepare(
@@ -273,7 +273,7 @@ switch ($method) {
         echo json_encode(['success' => true]);
         break;
  
-    // ═══════════════════════════════════════════
+   
     default:
         http_response_code(405);
         echo json_encode(['error' => 'Method not allowed']);
