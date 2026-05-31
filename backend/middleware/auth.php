@@ -25,7 +25,7 @@ function verifyToken(string $token): ?array {
     return $data;
 }
 
-// Also patch the optional-auth pattern used in feed & profile endpoints
+// aussi utilisé pour les routes publiques qui peuvent accepter un token optionnel
 function getOptionalAuth(): ?array {
     $authHeader = $_SERVER['HTTP_AUTHORIZATION']
         ?? $_SERVER['REDIRECT_HTTP_AUTHORIZATION']
