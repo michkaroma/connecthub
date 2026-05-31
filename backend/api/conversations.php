@@ -40,7 +40,7 @@ switch ($method) {
             $stmt->execute([(int)$id, $limit, $offset]);
             $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
  
-            // Marquer comme lu
+            
             $db->prepare(
                 'UPDATE conversation_participants SET last_read_at = NOW()
                  WHERE conversation_id = ? AND user_id = ?'
