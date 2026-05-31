@@ -30,7 +30,7 @@ switch ($method) {
         $stmt->execute([$status]);
         echo json_encode(['reports' => $stmt->fetchAll()]);
         break;
-
+    // Mettre à jour le statut d'un rapport (résolu, rejeté, etc.)
     case 'PUT':
         $auth = requireRole('moderator','admin');
         if (!$id) { http_response_code(400); echo json_encode(['error'=>'ID required']); break; }
