@@ -206,7 +206,7 @@ switch ($method) {
         )->execute([$name ?: null, $isGroup ? 1 : 0, $userId]);
         $convId = (int)$db->lastInsertId();
  
-     
+        // Ajouter le créateur en admin
         $db->prepare(
             "INSERT INTO conversation_participants (conversation_id, user_id, role) VALUES (?, ?, 'admin')"
         )->execute([$convId, $userId]);
