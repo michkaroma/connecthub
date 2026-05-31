@@ -194,7 +194,7 @@ switch ($method) {
         $mediaType   = $body['media_type'] ?? null;
         $linkUrl     = $body['link_url']   ?? null;
 
-        // Validate community membership
+        // valider le membre de la commu
         if ($communityId) {
             $stmt = $db->prepare('SELECT role FROM community_members WHERE community_id=? AND user_id=?');
             $stmt->execute([$communityId, $auth['sub']]);
@@ -209,7 +209,7 @@ switch ($method) {
         $stmt->execute([$auth['sub'], $communityId, $content, $mediaUrl, $mediaType, $linkUrl]);
         $postId = (int)$db->lastInsertId();
 
-        // Extract and save hashtags
+        // extraire et sauvegarder les hashtags
         preg_match_all('/#(\w+)/', $content, $matches);
         foreach (array_unique($matches[1]) as $tag) {
             $tag = strtolower(substr($tag, 0, 100));
