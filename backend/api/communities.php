@@ -24,7 +24,7 @@ switch ($method) {
         $community = $stmt->fetch();
         if (!$community) { http_response_code(404); echo json_encode(['error'=>'Not found']); break; }
 
-        // Members
+        // les membres de la communauté
         $mStmt = $db->prepare("SELECT u.id, u.username, u.display_name, u.avatar_url, cm.role, cm.joined_at
             FROM community_members cm JOIN users u ON u.id=cm.user_id WHERE cm.community_id=? ORDER BY cm.role DESC, cm.joined_at ASC");
         $mStmt->execute([(int)$id]);
