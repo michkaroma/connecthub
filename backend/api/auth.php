@@ -22,7 +22,7 @@ switch ("$method:$id") {
             break;
         }
 
-        // Check uniqueness
+        // Check 
         $stmt = $db->prepare('SELECT id FROM users WHERE username=? OR email=?');
         $stmt->execute([$username, $email]);
         if ($stmt->fetch()) {
