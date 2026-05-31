@@ -12,7 +12,7 @@ if (strlen($q) < 2) {
 
 $like    = "%$q%";
 $results = [];
-
+// recherche d'utilisateurs
 if (in_array($type, ['all','users'])) {
     $stmt = $db->prepare("SELECT id, username, display_name, avatar_url, bio FROM users WHERE (username LIKE ? OR display_name LIKE ?) AND is_banned=0 LIMIT 10");
     $stmt->execute([$like, $like]);
