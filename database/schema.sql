@@ -50,9 +50,7 @@ CREATE TABLE communities (
     FOREIGN KEY (creator_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
--- ============================================================
--- COMMUNITY MEMBERS
--- ============================================================
+-- membres d'une communauté avec rôles (membre, modérateur, admin)
 CREATE TABLE community_members (
     community_id INT NOT NULL,
     user_id      INT NOT NULL,
