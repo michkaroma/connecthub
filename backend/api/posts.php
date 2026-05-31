@@ -65,7 +65,7 @@ switch ($method) {
                         $userReactions[$r['target_id']] = $r['emoji'];
                     }
 
-                    // Following status for each post author
+                    //  Following status for each post author
                     $authorIds = array_unique(array_column($posts, 'author_id'));
                     $authorPlaceholders = implode(',', array_fill(0, count($authorIds), '?'));
                     $fStmt = $db->prepare("SELECT following_id FROM follows WHERE follower_id=? AND following_id IN ($authorPlaceholders)");
@@ -75,7 +75,7 @@ switch ($method) {
                         $followingIds[$f['following_id']] = true;
                     }
 
-                    // Shared posts by current user
+                    // partage posts by current user
                     $sStmt = $db->prepare("SELECT post_id FROM shares WHERE user_id=? AND post_id IN ($placeholders)");
                     $sStmt->execute(array_merge([$auth['sub']], $postIds));
                     $sharedPostIds = [];
