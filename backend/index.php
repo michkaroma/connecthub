@@ -19,6 +19,7 @@ $id       = $parts[1] ?? null;
 $action   = $parts[2] ?? null;
 $subId    = $parts[3] ?? null;   // retrouver dans mess etc..
  
+// charger body
 $body = [];
 if (in_array($method, ['POST', 'PUT', 'PATCH'])) {
     $raw  = file_get_contents('php://input');
