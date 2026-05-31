@@ -27,7 +27,7 @@ if (in_array($type, ['all','posts'])) {
     $stmt->execute([$like]);
     $results['posts'] = $stmt->fetchAll();
 }
-
+// recherche de communautés
 if (in_array($type, ['all','communities'])) {
     $stmt = $db->prepare("SELECT id, name, slug, description, avatar_url,
         (SELECT COUNT(*) FROM community_members cm WHERE cm.community_id=c.id) AS member_count
