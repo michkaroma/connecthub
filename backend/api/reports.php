@@ -1,8 +1,5 @@
 <?php
 
-
-// PUT    /api/reports/:id             - update status (moderator+)
-
 $db = getDB();
 
 switch ($method) {
