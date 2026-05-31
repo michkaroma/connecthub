@@ -93,9 +93,7 @@ CREATE TABLE post_hashtags (
     FOREIGN KEY (hashtag_id) REFERENCES hashtags(id) ON DELETE CASCADE
 );
 
--- ============================================================
--- SHARES  (repost)
--- ============================================================
+-- reposts / partages (shares) - un utilisateur peut partager un post dans son fil ou une communauté
 CREATE TABLE shares (
     id         INT AUTO_INCREMENT PRIMARY KEY,
     user_id    INT NOT NULL,
