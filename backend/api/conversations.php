@@ -13,7 +13,7 @@ switch ($method) {
  
         if ($id && $action === 'messages') {
  
-            
+            // Permet de vérifier que l'utilisateur est bien participant
             $stmt = $db->prepare(
                 'SELECT 1 FROM conversation_participants WHERE conversation_id = ? AND user_id = ?'
             );
