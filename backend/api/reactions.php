@@ -21,7 +21,7 @@ if ($method === 'POST') {
 
     if ($existing) {
         if ($existing['emoji'] === $emoji) {
-            // Same emoji → toggle off (remove)
+            // si c'est le même emoji → supprimer
             $db->prepare('DELETE FROM reactions WHERE id=?')->execute([$existing['id']]);
             echo json_encode(['action' => 'removed', 'emoji' => $emoji]);
         } else {
