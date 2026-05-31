@@ -4,7 +4,7 @@
 
 
 
-// GET    /api/posts/:id/comments - comments
+
 
 
 $db = getDB();
