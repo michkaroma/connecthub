@@ -50,6 +50,7 @@ switch ($method) {
             break;
         }
  
+        // Lister toutes les conversations de l'utilisateur
         $stmt = $db->prepare(
             "SELECT cv.id, cv.name, cv.is_group, cv.created_at,
                     cp.role AS my_role, cp.last_read_at,
