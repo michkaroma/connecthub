@@ -25,7 +25,7 @@ if ($method === 'POST') {
             $db->prepare('DELETE FROM reactions WHERE id=?')->execute([$existing['id']]);
             echo json_encode(['action' => 'removed', 'emoji' => $emoji]);
         } else {
-            // Different emoji → change
+            // si c'est un emoji différent → mettre à jour
             $db->prepare('UPDATE reactions SET emoji=? WHERE id=?')->execute([$emoji, $existing['id']]);
             echo json_encode(['action' => 'updated', 'emoji' => $emoji]);
         }
