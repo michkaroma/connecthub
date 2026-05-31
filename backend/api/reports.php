@@ -1,6 +1,6 @@
 <?php
 
-// GET    /api/reports                 - list (moderator+)
+
 // PUT    /api/reports/:id             - update status (moderator+)
 
 $db = getDB();
