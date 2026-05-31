@@ -18,7 +18,7 @@ if (in_array($type, ['all','users'])) {
     $stmt->execute([$like, $like]);
     $results['users'] = $stmt->fetchAll();
 }
-
+// recherche de posts
 if (in_array($type, ['all','posts'])) {
     $stmt = $db->prepare("SELECT p.id, p.content, p.created_at, u.username, u.display_name, u.avatar_url
         FROM posts p JOIN users u ON u.id=p.author_id
