@@ -1,6 +1,5 @@
 <?php
 
-// POST   /api/users/:id/follow    - follow
 // DELETE /api/users/:id/follow    - unfollow
 // GET    /api/users/:id/posts     - user posts
 // GET    /api/users/:id/followers - followers list
