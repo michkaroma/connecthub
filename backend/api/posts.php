@@ -104,7 +104,7 @@ switch ($method) {
             $stmt->execute([(int)$id]);
             $comments = $stmt->fetchAll();
 
-            // Add user_reaction per comment if authenticated
+            // ajouter une réaction si authentifier
             $auth = getOptionalAuth();
             if ($auth && $comments) {
                 $commentIds = array_column($comments, 'id');
