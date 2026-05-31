@@ -129,6 +129,7 @@ connecthub/
 |-------------|---------------------|--------------|------------|
 | admin       | admin@connecthub.io | Password123! | Admin      |
 | moderator1  | mod@connecthub.io   | Password123! | Modérateur |
+| alice       | alice@exemple.com   | Password123! | Membre     |
 
 ---
 
