@@ -1,7 +1,7 @@
 <?php
 define('JWT_SECRET', 'connecthub_secret_key_change_in_production_2026');
 define('JWT_EXPIRE', 86400 * 7); // 7 days
-
+// Middleware d'authentification JWT pour les API
 function generateToken(int $userId, string $role): string {
     $header  = base64url_encode(json_encode(['alg'=>'HS256','typ'=>'JWT']));
     $payload = base64url_encode(json_encode([
