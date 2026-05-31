@@ -22,7 +22,7 @@ switch ($method) {
         http_response_code(201);
         echo json_encode(['reported' => true]);
         break;
-
+    // Récupérer les rapports (filtrés par statut)
     case 'GET':
         requireRole('moderator','admin');
         $status = $_GET['status'] ?? 'pending';
