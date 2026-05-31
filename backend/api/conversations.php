@@ -250,7 +250,7 @@ switch ($method) {
             break;
         }
  
-        // Seul l'expéditeur ou un admin de la conversation peut supprimer
+        
         $canDelete = ((int)$msg['sender_id'] === $userId);
         if (!$canDelete) {
             $roleStmt = $db->prepare(
