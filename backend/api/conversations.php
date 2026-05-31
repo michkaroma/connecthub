@@ -230,6 +230,7 @@ switch ($method) {
     case 'DELETE':
     
  
+        // supprimer conv de api
         if (!$id || $action !== 'messages' || !$subId) {
             http_response_code(400);
             echo json_encode(['error' => 'Missing conversation id or message id']);
