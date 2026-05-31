@@ -30,7 +30,7 @@ switch ($method) {
         $mStmt->execute([(int)$id]);
         $community['members'] = $mStmt->fetchAll();
 
-        // Is current user member?
+        // est ce que c'est un membre connecté qui consulte ? si oui, quel est son rôle ?
         $header = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
         if (preg_match('/^Bearer\s+(.+)$/', $header, $m)) {
             $auth = verifyToken($m[1]);
