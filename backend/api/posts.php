@@ -244,7 +244,7 @@ switch ($method) {
         echo json_encode(['updated' => true]);
         break;
 
-    // ── Delete 
+    // ── supprimer
     case 'DELETE':
         $auth = requireAuth();
         if (!$id) { http_response_code(400); echo json_encode(['error'=>'Post ID required']); break; }
