@@ -180,7 +180,7 @@ switch ($method) {
             break;
         }
 
-        // Check duplicate (same content in last 60s)
+        // verifier si doublon( pendant 60sec)
         $stmt = $db->prepare('SELECT id FROM posts WHERE author_id=? AND content=? AND created_at > DATE_SUB(NOW(), INTERVAL 60 SECOND)');
         $stmt->execute([$auth['sub'], $content]);
         if ($stmt->fetch()) {
