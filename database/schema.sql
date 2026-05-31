@@ -61,9 +61,7 @@ CREATE TABLE community_members (
     FOREIGN KEY (user_id)      REFERENCES users(id)       ON DELETE CASCADE
 );
 
--- ============================================================
--- POSTS
--- ============================================================
+-- posts (publications) - peuvent être dans un fil personnel ou une communauté
 CREATE TABLE posts (
     id           INT AUTO_INCREMENT PRIMARY KEY,
     author_id    INT NOT NULL,
