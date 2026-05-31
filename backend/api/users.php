@@ -46,7 +46,6 @@ switch ($method) {
         $user = $stmt->fetch();
         if (!$user) { http_response_code(404); echo json_encode(['error'=>'User not found']); break; }
 
-        // Is current user following?
         $auth = getOptionalAuth();
         if ($auth) {
             $stmt2 = $db->prepare('SELECT 1 FROM follows WHERE follower_id=? AND following_id=?');
