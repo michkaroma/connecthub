@@ -211,7 +211,7 @@ switch ($method) {
             "INSERT INTO conversation_participants (conversation_id, user_id, role) VALUES (?, ?, 'admin')"
         )->execute([$convId, $userId]);
  
-  
+        // Ajouter les autres (vérifier qu'ils existent)
         $addStmt   = $db->prepare(
             'INSERT IGNORE INTO conversation_participants (conversation_id, user_id) VALUES (?, ?)'
         );
