@@ -1,5 +1,5 @@
 <?php
-// reactions.php
+
 // POST   /api/reactions          - toggle / change reaction
 // DELETE /api/reactions          - remove reaction
 
