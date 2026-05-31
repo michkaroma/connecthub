@@ -1,6 +1,5 @@
 <?php
 
-// GET    /api/users/:id/posts     - user posts
 // GET    /api/users/:id/followers - followers list
 // GET    /api/users/:id/following - following list
 
