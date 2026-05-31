@@ -6,7 +6,7 @@ switch ($method) {
     //  Feed 
     case 'GET':
         if (!$id) {
-            // Optional auth for personalized feed
+            // Optionalauth for personalized feed
             $auth = getOptionalAuth();
 
             $page  = max(1, (int)($_GET['page']  ?? 1));
