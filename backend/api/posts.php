@@ -1,6 +1,6 @@
 <?php
 
-// GET    /api/posts/:id          - single post
+
 // POST   /api/posts              - create
 // PUT    /api/posts/:id          - update
 // DELETE /api/posts/:id          - delete
