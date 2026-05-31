@@ -75,7 +75,7 @@ switch ($method) {
                         $followingIds[$f['following_id']] = true;
                     }
 
-                    // partage posts by current user
+                    // share posts by current user
                     $sStmt = $db->prepare("SELECT post_id FROM shares WHERE user_id=? AND post_id IN ($placeholders)");
                     $sStmt->execute(array_merge([$auth['sub']], $postIds));
                     $sharedPostIds = [];
