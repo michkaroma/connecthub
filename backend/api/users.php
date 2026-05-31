@@ -36,7 +36,7 @@ switch ($method) {
             break;
         }
 
-        // Profile
+    
         $stmt = $db->prepare("SELECT id, username, display_name, bio, avatar_url, cover_url, role, is_verified, created_at,
             (SELECT COUNT(*) FROM follows WHERE following_id=u.id) AS followers_count,
             (SELECT COUNT(*) FROM follows WHERE follower_id=u.id) AS following_count,
