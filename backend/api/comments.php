@@ -31,7 +31,7 @@ switch ($method) {
         $db->prepare('INSERT INTO comments (post_id, author_id, parent_id, content) VALUES (?,?,?,?)')->execute([$postId, $auth['sub'], $parentId, $content]);
         $commentId = (int)$db->lastInsertId();
 
-        // zebi le commit
+        // notify post author
         if ($post['author_id'] != $auth['sub']) {
             $db->prepare("INSERT INTO notifications (user_id, actor_id, type, entity_type, entity_id, content) VALUES (?,?,'comment','post',?,?)"
             )->execute([$post['author_id'], $auth['sub'], $postId, 'Someone commented on your post']);
