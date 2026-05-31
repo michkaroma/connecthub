@@ -1,8 +1,4 @@
 <?php
-
-
-
-
 $db = getDB();
 
 switch ("$method:$id") {
