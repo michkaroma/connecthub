@@ -55,7 +55,7 @@ if ($method === 'POST') {
     }
 
     echo json_encode(['action' => 'added', 'emoji' => $emoji]);
-
+// mettre à jour ou supprimer une réaction existante
 } elseif ($method === 'DELETE') {
     $targetType = $body['target_type'] ?? '';
     $targetId   = (int)($body['target_id'] ?? 0);
