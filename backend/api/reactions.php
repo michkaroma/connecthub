@@ -1,6 +1,5 @@
 <?php
 
-// DELETE /api/reactions          - remove reaction
 
 $db   = getDB();
 $auth = requireAuth();
