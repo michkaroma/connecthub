@@ -37,7 +37,7 @@ function getOptionalAuth(): ?array {
 }
 
 function requireAuth(): array {
-    // Try multiple sources — Apache strips Authorization in some XAMPP configs
+    // essayer de récupérer le token depuis les headers (Authorization ou REDIRECT_HTTP_AUTHORIZATION)
     $authHeader = $_SERVER['HTTP_AUTHORIZATION']
         ?? $_SERVER['REDIRECT_HTTP_AUTHORIZATION']
         ?? (function_exists('getallheaders') ? (getallheaders()['Authorization'] ?? '') : '');
