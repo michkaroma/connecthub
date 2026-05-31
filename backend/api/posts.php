@@ -141,7 +141,7 @@ switch ($method) {
             $auth = requireAuth();
             $postId = (int)$id;
 
-            // Check post exists
+            // verifier si post existe
             $stmt = $db->prepare('SELECT id, author_id, share_count FROM posts WHERE id=? AND is_deleted=0');
             $stmt->execute([$postId]);
             $post = $stmt->fetch();
