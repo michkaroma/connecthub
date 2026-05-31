@@ -1,6 +1,6 @@
 <?php
 
-// GET    /api/communities/:id          - detail + members
+
 // POST   /api/communities              - create
 // PUT    /api/communities/:id          - update
 // DELETE /api/communities/:id          - delete (admin)
