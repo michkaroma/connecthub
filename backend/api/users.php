@@ -1,6 +1,5 @@
 <?php
 
-// GET    /api/users/:id/following - following list
 
 $db = getDB();
 
