@@ -1,5 +1,5 @@
 <?php
-// POST   /api/reports                 - submit report
+
 // GET    /api/reports                 - list (moderator+)
 // PUT    /api/reports/:id             - update status (moderator+)
 
