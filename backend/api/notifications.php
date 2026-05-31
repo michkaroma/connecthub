@@ -1,7 +1,7 @@
 <?php
 
 
-// POST   /api/notifications/read-all  - mark all read
+
 // PUT    /api/notifications/:id       - mark read/unread
 
 $db = getDB();
