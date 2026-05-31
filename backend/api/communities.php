@@ -92,7 +92,7 @@ switch ($method) {
             if (!in_array($newRole, ['member','admin'])) {
                 http_response_code(422); echo json_encode(['error'=>'Invalid role']); break;
             }
-            // Must be community admin or platform admin
+            //doit être admin de la communauté ou admin de la plateforme
             $stmt = $db->prepare('SELECT role FROM community_members WHERE community_id=? AND user_id=?');
             $stmt->execute([$commId, $auth['sub']]);
             $myRole = $stmt->fetchColumn();
