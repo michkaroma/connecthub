@@ -103,7 +103,6 @@ switch ($method) {
         echo json_encode(['conversations' => $convs]);
         break;
  
-    // ═══════════════════════════════════════════
     case 'POST':
     // ═══════════════════════════════════════════
  
