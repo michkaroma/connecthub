@@ -65,7 +65,7 @@ switch ($method) {
                         $userReactions[$r['target_id']] = $r['emoji'];
                     }
 
-                    // Following statu for each post author
+                    // Following status for each post author
                     $authorIds = array_unique(array_column($posts, 'author_id'));
                     $authorPlaceholders = implode(',', array_fill(0, count($authorIds), '?'));
                     $fStmt = $db->prepare("SELECT following_id FROM follows WHERE follower_id=? AND following_id IN ($authorPlaceholders)");
