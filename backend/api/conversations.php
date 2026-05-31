@@ -1,6 +1,5 @@
 <?php
 
-// GET    /api/conversations/:id/messages           - messages d'une conversation
 // POST   /api/conversations                        - créer (DM ou groupe)
 // POST   /api/conversations/:id/messages           - envoyer un message
 // DELETE /api/conversations/:id/messages/:subId    - supprimer un message
