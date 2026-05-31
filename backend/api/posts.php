@@ -135,7 +135,7 @@ switch ($method) {
         echo json_encode($post);
         break;
 
-    // ── Create 
+    // ── création 
     case 'POST':
         if ($id && $action === 'share') {
             $auth = requireAuth();
