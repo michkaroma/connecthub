@@ -1,8 +1,5 @@
 <?php
 
-// POST   /api/conversations                        - créer (DM ou groupe)
-// POST   /api/conversations/:id/messages           - envoyer un message
-// DELETE /api/conversations/:id/messages/:subId    - supprimer un message
  
 $db     = getDB();
 $auth   = requireAuth();
