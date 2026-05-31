@@ -3,7 +3,7 @@
 
 
 
-// DELETE /api/posts/:id          - delete
+
 // GET    /api/posts/:id/comments - comments
 
 
