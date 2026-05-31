@@ -1,6 +1,5 @@
 <?php
 
-
 $db   = getDB();
 $auth = requireAuth();
 
