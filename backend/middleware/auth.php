@@ -66,7 +66,7 @@ function requireRole(string ...$roles): array {
 function base64url_encode(string $data): string {
     return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
 }
-
+// Décodage base64url (pour JWT)
 function base64url_decode(string $data): string {
     return base64_decode(strtr($data, '-_', '+/'));
 }
