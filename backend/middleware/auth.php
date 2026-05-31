@@ -13,7 +13,7 @@ function generateToken(int $userId, string $role): string {
     $sig = base64url_encode(hash_hmac('sha256', "$header.$payload", JWT_SECRET, true));
     return "$header.$payload.$sig";
 }
-
+// Vérifie le token et retourne les données (userId, role) ou null si invalide
 function verifyToken(string $token): ?array {
     $parts = explode('.', $token);
     if (count($parts) !== 3) return null;
