@@ -183,7 +183,7 @@ switch ($method) {
             break;
         }
  
-        // DM : retourner la conversation existante si elle existe déjà
+      
         if (!$isGroup && count($others) === 1) {
             $otherId = $others[0];
             $stmt = $db->prepare(
