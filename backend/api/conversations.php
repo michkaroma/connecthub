@@ -135,6 +135,7 @@ switch ($method) {
             )->execute([(int)$id, $userId, $content]);
             $msgId = (int)$db->lastInsertId();
  
+            // Récupérer le message complet pour le renvoyer au frontend
             $stmt = $db->prepare(
                 "SELECT m.id, m.conversation_id, m.sender_id, m.content, m.created_at,
                         u.username, u.display_name, u.avatar_url
