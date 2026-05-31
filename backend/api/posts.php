@@ -124,7 +124,7 @@ switch ($method) {
             break;
         }
 
-        // Single post
+        // post unique
         $stmt = $db->prepare("SELECT p.*, u.username, u.display_name, u.avatar_url,
             (SELECT COUNT(*) FROM reactions r WHERE r.target_type='post' AND r.target_id=p.id) AS reaction_count,
             (SELECT COUNT(*) FROM comments c WHERE c.post_id=p.id AND c.is_deleted=0) AS comment_count
