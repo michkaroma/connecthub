@@ -4,7 +4,7 @@ define('DB_NAME', 'connecthub');
 define('DB_USER', 'connecthub');
 define('DB_PASS', 'Mica111!');
 define('DB_CHARSET', 'utf8mb4');
-
+// Fonction pour obtenir une connexion PDO à la base de données
 function getDB(): PDO {
     static $pdo = null;
     if ($pdo === null) {
