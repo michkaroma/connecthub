@@ -228,7 +228,7 @@ switch ($method) {
         break;
  
     case 'DELETE':
-    // ═══════════════════════════════════════════
+    
  
         // DELETE /api/conversations/:id/messages/:subId
         if (!$id || $action !== 'messages' || !$subId) {
