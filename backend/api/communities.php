@@ -53,7 +53,7 @@ switch ($method) {
             if ($stmt->fetch()) { http_response_code(409); echo json_encode(['error'=>'Already member']); break; }
             $db->prepare('INSERT INTO community_members (community_id, user_id) VALUES (?,?)')->execute([$commId, $auth['sub']]);
 
-            // Notify community creator
+            // Notifier le créateur de la communauté
             $stmt2 = $db->prepare('SELECT creator_id FROM communities WHERE id=?');
             $stmt2->execute([$commId]);
             $comm = $stmt2->fetch();
