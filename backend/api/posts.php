@@ -2,7 +2,7 @@
 
 
 
-// PUT    /api/posts/:id          - update
+
 // DELETE /api/posts/:id          - delete
 // GET    /api/posts/:id/comments - comments
 // POST   /api/posts/:id/share    - share
