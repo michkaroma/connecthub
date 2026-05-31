@@ -104,7 +104,6 @@ switch ($method) {
         break;
  
     case 'POST':
-    // ═══════════════════════════════════════════
  
         if ($id && $action === 'messages') {
  
