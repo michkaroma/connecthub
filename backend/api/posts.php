@@ -57,7 +57,7 @@ switch ($method) {
                 if ($postIds) {
                     $placeholders = implode(',', array_fill(0, count($postIds), '?'));
 
-                    // User reactions
+                    // réactions utilisateurs
                     $rStmt = $db->prepare("SELECT target_id, emoji FROM reactions WHERE user_id=? AND target_type='post' AND target_id IN ($placeholders)");
                     $rStmt->execute(array_merge([$auth['sub']], $postIds));
                     $userReactions = [];
