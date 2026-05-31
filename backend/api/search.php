@@ -36,7 +36,7 @@ if (in_array($type, ['all','communities'])) {
     $results['communities'] = $stmt->fetchAll();
 }
 
-// Hashtag search
+// recherche de hashtags
 if (in_array($type, ['all','hashtags'])) {
     $stmt = $db->prepare("SELECT h.tag, COUNT(ph.post_id) AS post_count
         FROM hashtags h LEFT JOIN post_hashtags ph ON ph.hashtag_id=h.id
