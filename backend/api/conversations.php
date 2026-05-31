@@ -230,7 +230,6 @@ switch ($method) {
     case 'DELETE':
     
  
-        // DELETE /api/conversations/:id/messages/:subId
         if (!$id || $action !== 'messages' || !$subId) {
             http_response_code(400);
             echo json_encode(['error' => 'Missing conversation id or message id']);
