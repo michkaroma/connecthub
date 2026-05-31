@@ -1,13 +1,11 @@
 <?php
-// POST /api/auth/register
-// POST /api/auth/login
-// POST /api/auth/logout
-// GET  /api/auth/me
+
+
+
 
 $db = getDB();
 
 switch ("$method:$id") {
-    // ── Register ──────────────────────────────────────────────────────────────
     case 'POST:register':
         $username = trim($body['username'] ?? '');
         $email    = trim($body['email'] ?? '');
