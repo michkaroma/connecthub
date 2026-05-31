@@ -1,6 +1,5 @@
 <?php
 
-// DELETE /api/communities/:id/join     - leave
 // PUT    /api/communities/:id/members/:userId  - change role
 
 $db = getDB();
