@@ -1,7 +1,5 @@
 <?php
 
-// PUT    /api/communities/:id/members/:userId  - change role
-
 $db = getDB();
 
 switch ($method) {
