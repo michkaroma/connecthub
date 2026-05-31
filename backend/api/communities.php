@@ -1,5 +1,5 @@
 <?php
-// GET    /api/communities              - list
+
 // GET    /api/communities/:id          - detail + members
 // POST   /api/communities              - create
 // PUT    /api/communities/:id          - update
