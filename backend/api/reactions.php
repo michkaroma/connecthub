@@ -32,7 +32,7 @@ if ($method === 'POST') {
         return;
     }
 
-    // New reaction
+    // Nouvelle réaction
     $db->prepare('INSERT INTO reactions (user_id, target_type, target_id, emoji) VALUES (?,?,?,?)')->execute([$auth['sub'], $targetType, $targetId, $emoji]);
 
     // Notify author
