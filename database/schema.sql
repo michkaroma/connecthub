@@ -119,9 +119,7 @@ CREATE TABLE comments (
     FOREIGN KEY (parent_id) REFERENCES comments(id) ON DELETE SET NULL
 );
 
--- ============================================================
--- REACTIONS  (likes + custom emoji)
--- ============================================================
+-- réactions (likes, emojis) sur posts et commentaires - un utilisateur peut réagir une fois par cible
 CREATE TABLE reactions (
     id         INT AUTO_INCREMENT PRIMARY KEY,
     user_id    INT NOT NULL,
@@ -133,9 +131,7 @@ CREATE TABLE reactions (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
--- ============================================================
--- MESSAGES  (private + group)
--- ============================================================
+-- messages privés entre utilisateurs - support de conversations individuelles et de groupe
 CREATE TABLE conversations (
     id         INT AUTO_INCREMENT PRIMARY KEY,
     name       VARCHAR(100) DEFAULT NULL,    -- group name
@@ -167,13 +163,11 @@ CREATE TABLE messages (
     FOREIGN KEY (sender_id)       REFERENCES users(id)         ON DELETE CASCADE
 );
 
--- ============================================================
--- NOTIFICATIONS
--- ============================================================
+-- notifications (pour les interactions sociales et les mises à jour du système)
 CREATE TABLE notifications (
     id          INT AUTO_INCREMENT PRIMARY KEY,
-    user_id     INT NOT NULL,                -- recipient
-    actor_id    INT DEFAULT NULL,            -- who triggered it
+    user_id     INT NOT NULL,
+    actor_id    INT DEFAULT NULL,
     type        ENUM(
         'like','comment','follow','mention',
         'share','message','community_invite',
