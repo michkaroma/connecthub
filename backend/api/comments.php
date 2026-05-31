@@ -1,7 +1,7 @@
 <?php
-// POST   /api/comments           - create comment
-// PUT    /api/comments/:id       - update
-// DELETE /api/comments/:id       - delete
+
+
+
 
 $db = getDB();
 
@@ -31,7 +31,7 @@ switch ($method) {
         $db->prepare('INSERT INTO comments (post_id, author_id, parent_id, content) VALUES (?,?,?,?)')->execute([$postId, $auth['sub'], $parentId, $content]);
         $commentId = (int)$db->lastInsertId();
 
-        // Notify post author
+        // commit 1
         if ($post['author_id'] != $auth['sub']) {
             $db->prepare("INSERT INTO notifications (user_id, actor_id, type, entity_type, entity_id, content) VALUES (?,?,'comment','post',?,?)"
             )->execute([$post['author_id'], $auth['sub'], $postId, 'Someone commented on your post']);
