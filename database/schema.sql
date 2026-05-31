@@ -25,9 +25,7 @@ CREATE TABLE users (
     updated_at  DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- ============================================================
--- FOLLOWS  (user → user)
--- ============================================================
+--  followers / following (relations d'amitié)
 CREATE TABLE follows (
     follower_id INT NOT NULL,
     following_id INT NOT NULL,
