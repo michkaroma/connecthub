@@ -224,7 +224,7 @@ switch ($method) {
         echo json_encode(['id' => $postId, 'message' => 'Post created']);
         break;
 
-    // ── Update ────────────────────────────────────────────────────────────────
+    // ── Update 
     case 'PUT':
         $auth = requireAuth();
         if (!$id) { http_response_code(400); echo json_encode(['error'=>'Post ID required']); break; }
