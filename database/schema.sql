@@ -61,7 +61,7 @@ CREATE TABLE communities (
 CREATE TABLE community_members (
     community_id INT NOT NULL,
     user_id      INT NOT NULL,
-    role         ENUM('member','moderator','admin') DEFAULT 'member',
+    role         ENUM('member','admin') DEFAULT 'member',
     joined_at    DATETIME DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (community_id, user_id),
     FOREIGN KEY (community_id) REFERENCES communities(id) ON DELETE CASCADE,
