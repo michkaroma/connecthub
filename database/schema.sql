@@ -109,7 +109,7 @@ CREATE TABLE comments (
     id         INT AUTO_INCREMENT PRIMARY KEY,
     post_id    INT NOT NULL,
     author_id  INT NOT NULL,
-    parent_id  INT DEFAULT NULL,             -- thread support
+    parent_id  INT DEFAULT NULL,
     content    TEXT NOT NULL,
     is_deleted TINYINT(1) DEFAULT 0,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
