@@ -1,4 +1,5 @@
 <?php
+// Middleware pour gérer les CORS (Cross-Origin Resource Sharing)
 function handleCors(): void {
     $envFile = __DIR__ . '/../.env';
     if (file_exists($envFile)) {
