@@ -130,7 +130,7 @@ switch ($method) {
 
         $auth = requireAuth();
         if (!$id) { http_response_code(400); echo json_encode(['error'=>'ID required']); break; }
-        // Platform admin OR community admin can delete
+        // Pour supprimer une communauté, il faut être admin de la communauté ou admin de la plateforme
         if ($auth['role'] !== 'admin') {
             $stmt = $db->prepare('SELECT role FROM community_members WHERE community_id=? AND user_id=?');
             $stmt->execute([(int)$id, $auth['sub']]);
