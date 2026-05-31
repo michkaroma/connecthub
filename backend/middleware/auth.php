@@ -51,7 +51,7 @@ function requireAuth(): array {
         http_response_code(401);
         die(json_encode(['error' => 'Invalid or expired token']));
     }
-    return $data; // ['sub' => userId, 'role' => role]
+    return $data; // retourne ['sub' => userId, 'role' => role, 'iat' => ..., 'exp' => ...]
 }
 
 function requireRole(string ...$roles): array {
