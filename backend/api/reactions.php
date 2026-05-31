@@ -14,7 +14,7 @@ if ($method === 'POST') {
         return;
     }
 
-    // Check existing reaction
+    // est ce que il y a déjà une réaction de cet utilisateur sur cette cible ?
     $stmt = $db->prepare('SELECT id, emoji FROM reactions WHERE user_id=? AND target_type=? AND target_id=?');
     $stmt->execute([$auth['sub'], $targetType, $targetId]);
     $existing = $stmt->fetch();
