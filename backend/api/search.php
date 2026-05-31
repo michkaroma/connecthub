@@ -1,10 +1,9 @@
 <?php
-// GET /api/search?q=...&type=all|posts|users|communities
 
 $db = getDB();
 $q    = trim($_GET['q'] ?? '');
 $type = $_GET['type'] ?? 'all';
-
+// Types autorisés : all, users, posts, communities, hashtags
 if (strlen($q) < 2) {
     http_response_code(422);
     echo json_encode(['error' => 'Query too short']);
