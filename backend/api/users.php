@@ -1,5 +1,5 @@
 <?php
-// GET    /api/users/:id           - profile
+
 // PUT    /api/users/:id           - update profile
 // POST   /api/users/:id/follow    - follow
 // DELETE /api/users/:id/follow    - unfollow
