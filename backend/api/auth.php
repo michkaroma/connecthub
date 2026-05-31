@@ -46,7 +46,7 @@ switch ("$method:$id") {
     // se connecter 
     case 'POST:login':
         $identifier = trim($body['identifier'] ?? ''); // username or email
-        $password   = $body['password'] ?? '';
+        $password   = $body['password'] ?? '';// mdp
 
         $stmt = $db->prepare('SELECT * FROM users WHERE (username=? OR email=?) AND is_banned=0');
         $stmt->execute([$identifier, $identifier]);
