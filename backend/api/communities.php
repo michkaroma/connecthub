@@ -1,7 +1,7 @@
 <?php
 
 
-// POST   /api/communities              - create
+
 // PUT    /api/communities/:id          - update
 // DELETE /api/communities/:id          - delete (admin)
 // POST   /api/communities/:id/join     - join
