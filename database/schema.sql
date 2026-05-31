@@ -104,9 +104,7 @@ CREATE TABLE shares (
     FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE
 );
 
--- ============================================================
--- COMMENTS
--- ============================================================
+-- comments (commentaires) - support de threads avec parent_id
 CREATE TABLE comments (
     id         INT AUTO_INCREMENT PRIMARY KEY,
     post_id    INT NOT NULL,
