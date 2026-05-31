@@ -164,7 +164,6 @@ switch ($method) {
             break;
         }
  
-        // Créer une conversation (DM ou groupe)
         $isGroup      = !empty($body['is_group']);
         $name         = trim($body['name'] ?? '');
         $participants = array_map('intval', $body['participants'] ?? []);
