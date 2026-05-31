@@ -1,16 +1,9 @@
 <?php
 
-
-
-
-
-
-
-
 $db = getDB();
 
 switch ($method) {
-    // ── Feed ──────────────────────────────────────────────────────────────────
+    //  Feed 
     case 'GET':
         if (!$id) {
             // Optional auth for personalized feed
