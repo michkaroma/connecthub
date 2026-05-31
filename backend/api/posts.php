@@ -155,7 +155,7 @@ switch ($method) {
             $db->prepare('INSERT INTO shares (user_id, post_id) VALUES (?,?)')->execute([$auth['sub'], $postId]);
             $db->prepare('UPDATE posts SET share_count = share_count + 1 WHERE id=?')->execute([$postId]);
 
-            // Notify post author
+            // notification
             if ($post['author_id'] != $auth['sub']) {
                 $db->prepare("INSERT INTO notifications (user_id, actor_id, type, entity_type, entity_id, content) VALUES (?,?,'share','post',?,?)"
                 )->execute([$post['author_id'], $auth['sub'], $postId, 'Someone shared your post']);
