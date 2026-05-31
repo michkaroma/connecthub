@@ -38,7 +38,7 @@ switch ($method) {
             http_response_code(422); echo json_encode(['error'=>'Invalid status']); break;
         }
 
-        // If resolved: soft-delete the reported content
+        // si le rapport est résolu, appliquer les sanctions
         if ($status === 'resolved') {
             $stmt = $db->prepare('SELECT target_type, target_id FROM reports WHERE id=?');
             $stmt->execute([(int)$id]);
