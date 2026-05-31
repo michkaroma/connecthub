@@ -43,7 +43,7 @@ switch ("$method:$id") {
         ]]);
         break;
 
-    // ── Login ─────────────────────────────────────────────────────────────────
+    // se connecter 
     case 'POST:login':
         $identifier = trim($body['identifier'] ?? ''); // username or email
         $password   = $body['password'] ?? '';
