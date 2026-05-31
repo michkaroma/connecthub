@@ -1,5 +1,5 @@
 <?php
-// GET    /api/posts              - feed (suivis ou global)
+
 // GET    /api/posts/:id          - single post
 // POST   /api/posts              - create
 // PUT    /api/posts/:id          - update
