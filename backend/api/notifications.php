@@ -2,7 +2,6 @@
 
 
 
-// PUT    /api/notifications/:id       - mark read/unread
 
 $db = getDB();
 $auth = requireAuth();
