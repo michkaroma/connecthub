@@ -79,9 +79,7 @@ CREATE TABLE posts (
     FOREIGN KEY (community_id) REFERENCES communities(id)  ON DELETE SET NULL
 );
 
--- ============================================================
--- HASHTAGS
--- ============================================================
+-- hashtags (pour catégoriser les posts) et table de liaison post_hashtags
 CREATE TABLE hashtags (
     id   INT AUTO_INCREMENT PRIMARY KEY,
     tag  VARCHAR(100) NOT NULL UNIQUE
