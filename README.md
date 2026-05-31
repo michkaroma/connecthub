@@ -152,18 +152,18 @@ connecthub/
 - Fil d'actualité : récent / abonnements / tendances
 
 ### Communautés
-- Création, rejoindre / quitter
-- Gestion des rôles (membre, modérateur, admin)
+- Création, rejoindre / quitter, suppression
+- Gestion des rôles (membre, admin)
 - Publications dans une communauté
 
 ### Messagerie
 - Conversations privées (DM) et groupes
-- Polling automatique toutes les 5 secondes
 
 ### Notifications
 - Déclenchement automatique (like, commentaire, follow, message, community_join)
 - Marquer comme lu / tout marquer
 - Badge en temps réel
+- Navigation vers le sujet de la notification sur click
 
 ### Modération
 - Signalement de publication / commentaire / utilisateur
