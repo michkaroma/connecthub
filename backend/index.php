@@ -17,7 +17,7 @@ $parts  = explode('/', trim($uri, '/'));
 $resource = $parts[0] ?? '';
 $id       = $parts[1] ?? null;
 $action   = $parts[2] ?? null;
-$subId    = $parts[3] ?? null;   // ✅ ex: /conversations/:id/messages/:subId
+$subId    = $parts[3] ?? null;   // retrouver dans mess etc..
  
 // Load body for POST/PUT/PATCH
 $body = [];
