@@ -35,9 +35,7 @@ CREATE TABLE follows (
     FOREIGN KEY (following_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
--- ============================================================
--- COMMUNITIES
--- ============================================================
+-- communautés / groupes
 CREATE TABLE communities (
     id          INT AUTO_INCREMENT PRIMARY KEY,
     name        VARCHAR(100) NOT NULL UNIQUE,
