@@ -1,8 +1,5 @@
 <?php
 
-
-
-// PUT    /api/communities/:id          - update
 // DELETE /api/communities/:id          - delete (admin)
 // POST   /api/communities/:id/join     - join
 // DELETE /api/communities/:id/join     - leave
