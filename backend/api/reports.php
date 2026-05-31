@@ -3,6 +3,7 @@
 $db = getDB();
 
 switch ($method) {
+    // Créer un rapport
     case 'POST':
         $auth       = requireAuth();
         $targetType = $body['target_type'] ?? '';
