@@ -237,7 +237,7 @@ switch ($method) {
             break;
         }
  
-       
+        // Vérifier que le message existe dans cette conversation
         $stmt = $db->prepare(
             'SELECT id, sender_id FROM messages WHERE id = ? AND conversation_id = ? AND is_deleted = 0'
         );
