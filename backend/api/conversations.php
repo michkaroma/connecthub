@@ -146,7 +146,7 @@ switch ($method) {
             $stmt->execute([$msgId]);
             $message = $stmt->fetch(PDO::FETCH_ASSOC);
  
-            
+            // Notifier les autres participants
             $pStmt = $db->prepare(
                 'SELECT user_id FROM conversation_participants WHERE conversation_id = ? AND user_id != ?'
             );
