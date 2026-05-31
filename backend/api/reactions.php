@@ -35,7 +35,7 @@ if ($method === 'POST') {
     // Nouvelle réaction
     $db->prepare('INSERT INTO reactions (user_id, target_type, target_id, emoji) VALUES (?,?,?,?)')->execute([$auth['sub'], $targetType, $targetId, $emoji]);
 
-    // Notify author
+    // notifier l'auteur du post/commentaire
     if ($targetType === 'post') {
         $stmt2 = $db->prepare('SELECT author_id FROM posts WHERE id=?');
         $stmt2->execute([$targetId]);
