@@ -182,9 +182,7 @@ CREATE TABLE notifications (
     FOREIGN KEY (actor_id) REFERENCES users(id) ON DELETE SET NULL
 );
 
--- ============================================================
--- REPORTS  (moderation)
--- ============================================================
+-- modération et signalements - pour gérer les contenus problématiques et les comportements abusifs
 CREATE TABLE reports (
     id           INT AUTO_INCREMENT PRIMARY KEY,
     reporter_id  INT NOT NULL,
@@ -202,9 +200,7 @@ CREATE TABLE reports (
 
 SET FOREIGN_KEY_CHECKS = 1;
 
--- ============================================================
--- INDEXES for performance
--- ============================================================
+-- indexes pour optimiser les requêtes courantes
 CREATE INDEX idx_posts_author    ON posts(author_id);
 CREATE INDEX idx_posts_community ON posts(community_id);
 CREATE INDEX idx_posts_created   ON posts(created_at DESC);
