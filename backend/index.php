@@ -26,7 +26,7 @@ if (in_array($method, ['POST', 'PUT', 'PATCH'])) {
     $body = json_decode($raw, true) ?? [];
 }
  
-
+// Route 
 try {
     switch ($resource) {
         case 'auth':          require __DIR__ . '/api/auth.php';          break;
